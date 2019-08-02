@@ -11,7 +11,7 @@ class App extends Component {
 		return (
 			<Router>
 				<Switch>
-					<Route exact path='/' render={(routeProps) => <HomePage {...routeProps} test='hello' />} />
+					<Route exact path='/' render={(routeProps) => <HomePage {...routeProps} />} />
 					<Redirect to='/' />
 				</Switch>
 			</Router>
