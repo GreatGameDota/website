@@ -30,12 +30,11 @@ const styles = (theme) => ({
 	root: {
 		display: 'flex',
 		flexDirection: 'column',
-		width: 360,
+		width: '100%',
 		padding: '10px'
 	},
 	lists: {
 		backgroundColor: theme.palette.background.paper,
-		marginRight: '8.5em'
 	},
 	nested: {
 		paddingLeft: theme.spacing(4)
