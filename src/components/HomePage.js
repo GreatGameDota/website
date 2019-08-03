@@ -8,7 +8,6 @@ class HomePage extends Component {
 		return (
 			<div className={classes.root}>
 				Home Page!
-				<br />
 			</div>
 		);
 	}

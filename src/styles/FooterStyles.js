@@ -3,6 +3,6 @@ export default {
 		backgroundColor: '#000000',
     color: '#ffffff',
     height: '50vh',
-    marginTop: '5em'
+    marginTop: '15em'
 	}
 };
