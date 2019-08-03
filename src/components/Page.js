@@ -38,7 +38,13 @@ const useStyles = makeStyles((theme) => ({
 			display: 'none'
 		}
 	},
-	toolbar: theme.mixins.toolbar,
+	toolbar: {
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'flex-end',
+		padding: '0 8px',
+		minHeight: '16px'
+	},
 	drawer: {
 		[theme.breakpoints.up('sm')]: {
 			width: drawerWidth,
@@ -48,9 +54,20 @@ const useStyles = makeStyles((theme) => ({
 	drawerPaper: {
 		width: drawerWidth
 	},
+	navTitle: {
+		paddingLeft: '25px',
+		paddingTop: '20px',
+		fontSize: '20px'
+	},
 	content: {
-		flexGrow: 1,
-		paddingTop: theme.spacing(3)
+		padding: '0 8px',
+		width: '100%',
+		paddingTop: 'calc(64px + 8px)'
+	},
+	footer: {
+		[theme.breakpoints.up('sm')]: {
+			marginLeft: drawerWidth
+		}
 	}
 }));
 
@@ -78,6 +95,7 @@ function Page (props) {
 
 	const drawer = (
 		<div>
+			<div className={classes.navTitle}>{title}</div>
 			<div className={classes.toolbar} />
 			<Nav />
 			<Divider />
@@ -95,61 +113,62 @@ function Page (props) {
 	);
 
 	return (
-		<div className={classes.root}>
-			<CssBaseline />
-			<HideOnScroll {...props}>
-				<AppBar position='fixed' className={classes.appBar}>
-					<Toolbar>
-						<IconButton
-							color='inherit'
-							aria-label='open drawer'
-							edge='start'
-							onClick={handleDrawerToggle}
-							className={classes.menuButton}
+		<div>
+			<div className={classes.root}>
+				<CssBaseline />
+				<HideOnScroll {...props}>
+					<AppBar position='fixed' className={classes.appBar}>
+						<Toolbar>
+							<IconButton
+								color='inherit'
+								aria-label='open drawer'
+								edge='start'
+								onClick={handleDrawerToggle}
+								className={classes.menuButton}
+							>
+								<MenuIcon />
+							</IconButton>
+							<Typography variant='h6' noWrap>
+								{title}
+							</Typography>
+						</Toolbar>
+					</AppBar>
+				</HideOnScroll>
+				<nav className={classes.drawer} aria-label='mailbox folders'>
+					<Hidden smUp implementation='css'>
+						<Drawer
+							container={container}
+							variant='temporary'
+							anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+							open={mobileOpen}
+							onClose={handleDrawerToggle}
+							classes={{
+								paper: classes.drawerPaper
+							}}
+							ModalProps={{
+								keepMounted: true // Better open performance on mobile.
+							}}
 						>
-							<MenuIcon />
-						</IconButton>
-						<Typography variant='h6' noWrap>
-							{title}
-						</Typography>
-					</Toolbar>
-				</AppBar>
-			</HideOnScroll>
-			<nav className={classes.drawer} aria-label='mailbox folders'>
-				<Hidden smUp implementation='css'>
-					<Drawer
-						container={container}
-						variant='temporary'
-						anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-						open={mobileOpen}
-						onClose={handleDrawerToggle}
-						classes={{
-							paper: classes.drawerPaper
-						}}
-						ModalProps={{
-							keepMounted: true // Better open performance on mobile.
-						}}
-					>
-						{drawer}
-					</Drawer>
-				</Hidden>
-				<Hidden xsDown implementation='css'>
-					<Drawer
-						classes={{
-							paper: classes.drawerPaper
-						}}
-						variant='permanent'
-						open
-					>
-						{drawer}
-					</Drawer>
-				</Hidden>
-			</nav>
-			<main className={classes.content}>
-				<div className={classes.toolbar} />
-				{renderPage}
+							{drawer}
+						</Drawer>
+					</Hidden>
+					<Hidden xsDown implementation='css'>
+						<Drawer
+							classes={{
+								paper: classes.drawerPaper
+							}}
+							variant='permanent'
+							open
+						>
+							{drawer}
+						</Drawer>
+					</Hidden>
+				</nav>
+				<main className={classes.content}>{renderPage}</main>
+			</div>
+			<div className={classes.footer}>
 				<Footer />
-			</main>
+			</div>
 		</div>
 	);
 }
