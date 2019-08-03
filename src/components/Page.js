@@ -17,6 +17,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Project1 from './Project1';
 import HomePage from './HomePage';
+import Footer from './Footer';
 
 const drawerWidth = 240;
 
@@ -47,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	content: {
 		flexGrow: 1,
-		padding: theme.spacing(3)
+		paddingTop: theme.spacing(3)
 	}
 }));
 
@@ -133,6 +134,7 @@ function Page (props) {
 			<main className={classes.content}>
 				<div className={classes.toolbar} />
 				{renderPage}
+				<Footer />
 			</main>
 		</div>
 	);
