@@ -1,5 +1,5 @@
 import React from 'react';
-import Router from './Nav';
+import Nav from './Nav';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
@@ -66,7 +66,7 @@ function Page (props) {
 	const drawer = (
 		<div>
 			<div className={classes.toolbar} />
-			<Router />
+			<Nav />
 			<Divider />
 			<List>
 				{[ '2' ].map((text, index) => (
