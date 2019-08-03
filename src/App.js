@@ -11,11 +11,11 @@ class App extends Component {
 		return (
 			<Router>
 				<Switch>
-					<Route exact path='/' render={(routeProps) => <Page {...routeProps} title='Home Page' project={0} />} />
+					<Route exact path='/' render={(routeProps) => <Page {...routeProps} title='Home Page' page={0} />} />
 					<Route
 						exact
 						path='/projects/project1'
-						render={(routeProps) => <Page {...routeProps} title='Project1' project={1} />}
+						render={(routeProps) => <Page {...routeProps} title='Project1' page={1} />}
 					/>
 					<Redirect to='/' />
 				</Switch>

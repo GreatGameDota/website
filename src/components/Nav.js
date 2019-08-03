@@ -34,7 +34,7 @@ const styles = (theme) => ({
 		padding: '10px'
 	},
 	lists: {
-		backgroundColor: theme.palette.background.paper,
+		backgroundColor: theme.palette.background.paper
 	},
 	nested: {
 		paddingLeft: theme.spacing(4)

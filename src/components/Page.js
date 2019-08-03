@@ -16,6 +16,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Project1 from './Project1';
+import HomePage from './HomePage';
 
 const drawerWidth = 240;
 
@@ -50,14 +51,14 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
-const projects = [ <Project1 /> ];
+const pages = [ <HomePage />, <Project1 /> ];
 
 function Page (props) {
-	const { container, title, project } = props;
+	const { container, title, page } = props;
 	const classes = useStyles();
 	const theme = useTheme();
 	const [ mobileOpen, setMobileOpen ] = React.useState(false);
-	const renderProject = project !== 0 ? projects[project - 1] : null;
+	const renderPage = pages[page];
 	function handleDrawerToggle () {
 		setMobileOpen(!mobileOpen);
 	}
@@ -131,8 +132,7 @@ function Page (props) {
 			</nav>
 			<main className={classes.content}>
 				<div className={classes.toolbar} />
-				<Typography paragraph>Content</Typography>
-				{renderProject}
+				{renderPage}
 			</main>
 		</div>
 	);
