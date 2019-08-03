@@ -42,7 +42,7 @@ const styles = (theme) => ({
 	}
 });
 
-class RouterBreadcrumbs extends Component {
+class Nav extends Component {
 	state = {
 		open: true
 	};
@@ -83,4 +83,4 @@ class RouterBreadcrumbs extends Component {
 	}
 }
 
-export default withStyles(styles)(RouterBreadcrumbs);
+export default withStyles(styles)(Nav);
