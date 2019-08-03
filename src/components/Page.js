@@ -15,6 +15,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import Slide from '@material-ui/core/Slide';
+import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Project1 from './Project1';
 import HomePage from './HomePage';
 import Footer from './Footer';
@@ -54,6 +56,16 @@ const useStyles = makeStyles((theme) => ({
 
 const pages = [ <HomePage />, <Project1 /> ];
 
+function HideOnScroll (props) {
+	const { children, window } = props;
+	const trigger = useScrollTrigger({ target: window ? window() : undefined });
+	return (
+		<Slide appear={false} direction='down' in={!trigger}>
+			{children}
+		</Slide>
+	);
+}
+
 function Page (props) {
 	const { container, title, page } = props;
 	const classes = useStyles();
@@ -85,22 +97,24 @@ function Page (props) {
 	return (
 		<div className={classes.root}>
 			<CssBaseline />
-			<AppBar position='fixed' className={classes.appBar}>
-				<Toolbar>
-					<IconButton
-						color='inherit'
-						aria-label='open drawer'
-						edge='start'
-						onClick={handleDrawerToggle}
-						className={classes.menuButton}
-					>
-						<MenuIcon />
-					</IconButton>
-					<Typography variant='h6' noWrap>
-						{title}
-					</Typography>
-				</Toolbar>
-			</AppBar>
+			<HideOnScroll {...props}>
+				<AppBar position='fixed' className={classes.appBar}>
+					<Toolbar>
+						<IconButton
+							color='inherit'
+							aria-label='open drawer'
+							edge='start'
+							onClick={handleDrawerToggle}
+							className={classes.menuButton}
+						>
+							<MenuIcon />
+						</IconButton>
+						<Typography variant='h6' noWrap>
+							{title}
+						</Typography>
+					</Toolbar>
+				</AppBar>
+			</HideOnScroll>
 			<nav className={classes.drawer} aria-label='mailbox folders'>
 				<Hidden smUp implementation='css'>
 					<Drawer
