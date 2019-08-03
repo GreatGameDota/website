@@ -9,7 +9,7 @@ class Project1 extends Component {
 		return (
 			<div>
 				Project1
-        <br></br>
+				<br />
 				<Button variant='contained' className={classes.button}>
 					<a href='https://github.com/GreatGameDota/my-website/archive/master.zip'>Download</a>
 				</Button>
@@ -17,4 +17,5 @@ class Project1 extends Component {
 		);
 	}
 }
+
 export default withStyles(styles)(Project1);
