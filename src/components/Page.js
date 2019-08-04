@@ -84,7 +84,7 @@ function HideOnScroll (props) {
 }
 
 function Page (props) {
-	const { container, title, page } = props;
+	const { container, title, page, testKey } = props;
 	const classes = useStyles();
 	const theme = useTheme();
 	const [ mobileOpen, setMobileOpen ] = React.useState(false);
@@ -164,7 +164,10 @@ function Page (props) {
 						</Drawer>
 					</Hidden>
 				</nav>
-				<main className={classes.content}>{renderPage}</main>
+				<main className={classes.content}>
+					{renderPage}
+					{testKey}
+				</main>
 			</div>
 			<div className={classes.footer}>
 				<Footer />
