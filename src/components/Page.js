@@ -91,7 +91,7 @@ function HideOnScroll (props) {
 function Page (props) {
 	const { container, title, page, add, remove } = props;
 	let { testDB } = props;
-	if (typeof testDB === 'undefined' || testDB.users.length === 0) testDB = null;
+	if (typeof testDB === 'undefined') testDB = null;
 	const classes = useStyles();
 	const theme = useTheme();
 	const [ mobileOpen, setMobileOpen ] = React.useState(false);
