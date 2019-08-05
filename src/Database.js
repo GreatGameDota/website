@@ -9,37 +9,63 @@ export default class Database extends Component {
 		Firebase.initializeApp(config);
 	}
 	componentDidMount () {
-		this.getUserData();
+		this.getData();
 	}
 	componentDidUpdate (prevProps, prevState) {
 		if (prevState !== this.state) {
-			this.writeUserData();
+			this.writeData();
 		}
 	}
-	writeUserData = () => {
+	writeData = () => {
 		Firebase.database().ref('/').set(this.state);
 	};
-	getUserData = () => {
+	getData = () => {
 		let ref = Firebase.database().ref('/');
 		ref.on('value', (snapshot) => {
 			const state = snapshot.val();
 			this.setState(state);
 		});
 	};
-	removeData = (user) => {
-		user = this.state.users[0];
-		const { users } = this.state;
-		const newState = users.filter((data) => {
-			return data.uid !== user.uid;
-		});
-		this.setState({ users: newState });
+	addData = (data, model) => {
+		switch (model) {
+			case 'user':
+				data = { uid: new Date().getTime().toString(), name: 'test name' };
+				this.setState((prevState) => ({
+					users: [ ...prevState.users, data ]
+				}));
+				break;
+			case 'project':
+				data = { uid: new Date().getTime().toString(), path: '/projects/Project1', name: 'Project1' };
+				this.setState((prevState) => ({
+					projects: [...prevState.projects, data]
+				}));
+				break;
+			default: 
+				console.log('Specify a data model')
+		}
 	};
-	addData = (data) => {
-		data = { uid: new Date().getTime().toString(), name: 'test name' };
-		// data = { uid: new Date().getTime().toString(), path: '/projects/Project1', name: 'Project1' };
-		this.setState((prevState) => ({
-			users: [ ...prevState.users, data ]
-		}));
+	removeData = (newData, model) => {
+		let newState = 0;
+		switch (model) {
+			case 'user':
+				newData = this.state.users[0];
+				const { users } = this.state;
+				newState = users.filter((data) => {
+					return data.uid !== newData.uid;
+				});
+				this.setState({ users: newState });
+				break;
+			case 'project':
+				newData = this.state.projects[0];
+				const { projects } = this.state;
+				newState = projects.filter((data) => {
+					return data.uid !== newData.uid;
+				});
+				this.setState({ projects: newState });
+				break;
+			default: 
+				console.log('Specify a data model')
+		}
 	};
 	updateData = (event) => {
 		event.preventDefault();

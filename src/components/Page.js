@@ -92,6 +92,7 @@ function HideOnScroll (props) {
 function Page (props) {
 	const { container, title, page, add, remove } = props;
 	let { db } = props;
+	// if (typeof db === 'undefined' || db.users.length === 0) db = null; // Use this when finished
 	if (typeof db === 'undefined') db = null;
 	const classes = useStyles();
 	const theme = useTheme();
@@ -179,10 +180,10 @@ function Page (props) {
 					{db !== null ? (
 						<div>
 							{db.users.map((user) => user.name + ' ')}
-							<Button variant='contained' onClick={add}>
+							<Button variant='contained' onClick={() => add({}, 'user')}>
 								Add Data
 							</Button>
-							<Button variant='contained' onClick={remove}>
+							<Button variant='contained' onClick={() => remove({}, 'user')}>
 								Delete Data
 							</Button>
 						</div>
