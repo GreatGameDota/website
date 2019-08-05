@@ -8,8 +8,6 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import { Link } from 'react-router-dom';
 
-const routes = [ 'Home', 'Projects', 'Project1' ];
-
 function ListItemLink (props) {
 	const { to, open, name, button, ...other } = props;
 	const listItem = button ? (
@@ -52,30 +50,34 @@ class Nav extends Component {
 
 	render () {
 		const { classes, closeDrawer } = this.props;
+		let { db } = this.props;
 		return (
 			<div className={classes.root}>
 				<nav className={classes.lists} aria-label='mailbox folders'>
 					<List>
 						<div onClick={closeDrawer}>
-							<ListItemLink to='/' onClick={this.handleRoute} name={routes[0]} button={true} />
+							<ListItemLink to='/' onClick={this.handleRoute} name='Home' button={true} />
 						</div>
 						<ListItemLink
 							to='/projects'
 							open={this.state.open}
 							onClick={this.handleClick}
-							name={routes[1]}
+							name='Projects'
 							button={false}
 						/>
 						<Collapse component='li' in={this.state.open} timeout='auto' unmountOnExit>
 							<List disablePadding>
 								<div onClick={closeDrawer}>
-									<ListItemLink
-										to='/projects/project1'
-										className={classes.nested}
-										onClick={this.handleRoute}
-										name={routes[2]}
-										button={true}
-									/>
+									{db.projects.map((project) => (
+										<ListItemLink
+											to={project.path}
+											className={classes.nested}
+											onClick={this.handleRoute}
+											name={project.name}
+											button={true}
+											key={project.uid}
+										/>
+									))}
 								</div>
 							</List>
 						</Collapse>

@@ -12,21 +12,17 @@ export default class Routes extends Component {
 						exact
 						path='/'
 						render={(routeProps) => (
-							<Page
-								{...routeProps}
-								title='Home Page'
-								testDB={db}
-								add={addData}
-								remove={removeData}
-								page={0}
-							/>
+							<Page {...routeProps} title='Home Page' db={db} add={addData} remove={removeData} page={0} />
 						)}
 					/>
-					<Route
-						exact
-						path='/projects/project1'
-						render={(routeProps) => <Page {...routeProps} title='Project1' testDB={db} page={1} />}
-					/>
+					{db.projects.map((project, index) => (
+						<Route
+							exact
+							path={project.path}
+							render={(routeProps) => <Page {...routeProps} title={project.name} db={db} page={index + 1} />}
+							key={project.uid}
+						/>
+					))}
 					<Redirect to='/' />
 				</Switch>
 			</Router>

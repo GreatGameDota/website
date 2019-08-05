@@ -4,7 +4,8 @@ import config from './dbConfig';
 
 export default class Database extends Component {
 	state = {
-		users: []
+		users: [],
+		projects: []
 	};
 	constructor (props) {
 		super(props);
@@ -38,6 +39,7 @@ export default class Database extends Component {
 	};
 	addData = (data) => {
 		data = { uid: new Date().getTime().toString(), name: 'test name' };
+		// data = { uid: new Date().getTime().toString(), path: '/projects/Project1', name: 'Project1' };
 		this.setState((prevState) => ({
 			users: [ ...prevState.users, data ]
 		}));

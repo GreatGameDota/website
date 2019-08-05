@@ -90,8 +90,8 @@ function HideOnScroll (props) {
 
 function Page (props) {
 	const { container, title, page, add, remove } = props;
-	let { testDB } = props;
-	if (typeof testDB === 'undefined') testDB = null;
+	let { db } = props;
+	if (typeof db === 'undefined') db = null;
 	const classes = useStyles();
 	const theme = useTheme();
 	const [ mobileOpen, setMobileOpen ] = React.useState(false);
@@ -106,7 +106,7 @@ function Page (props) {
 		<div>
 			<div className={classes.navTitle}>{title}</div>
 			<div className={classes.toolbar} />
-			<Nav closeDrawer={handleDrawerClose} />
+			<Nav closeDrawer={handleDrawerClose} db={db}/>
 			<Divider />
 			<List>
 				{[ '2' ].map((text, index) => (
@@ -175,9 +175,9 @@ function Page (props) {
 				</nav>
 				<main className={classes.content}>
 					{renderPage}
-					{testDB !== null ? (
+					{db !== null ? (
 						<div>
-							{testDB.users.map((user) => user.name + ' ')}
+							{db.users.map((user) => user.name + ' ')}
 							<Button variant='contained' onClick={add}>
 								Add Data
 							</Button>
