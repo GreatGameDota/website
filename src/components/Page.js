@@ -72,7 +72,8 @@ const useStyles = makeStyles((theme) => ({
 		}
 	},
 	progress: {
-		margin: '8px'
+		margin: '8px',
+		color: '#000000'
 	}
 }));
 
@@ -91,7 +92,8 @@ function HideOnScroll (props) {
 function Page (props) {
 	const { container, title, page, add, remove } = props;
 	let { db } = props;
-	if (typeof db === 'undefined') db = null;
+	if (typeof db === 'undefined' || db.users.length === 0 || db.projects.length === 0) db = null;
+	db = null;
 	const classes = useStyles();
 	const theme = useTheme();
 	const [ mobileOpen, setMobileOpen ] = React.useState(false);
@@ -106,7 +108,7 @@ function Page (props) {
 		<div>
 			<div className={classes.navTitle}>{title}</div>
 			<div className={classes.toolbar} />
-			<Nav closeDrawer={handleDrawerClose} db={db}/>
+			<Nav closeDrawer={handleDrawerClose} db={db} />
 			<Divider />
 			<List>
 				{[ '2' ].map((text, index) => (

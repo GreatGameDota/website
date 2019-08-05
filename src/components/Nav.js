@@ -7,6 +7,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import { Link } from 'react-router-dom';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 function ListItemLink (props) {
 	const { to, open, name, button, ...other } = props;
@@ -36,6 +37,10 @@ const styles = (theme) => ({
 	},
 	nested: {
 		paddingLeft: theme.spacing(4)
+	},
+	progress: {
+		marginLeft: '96px',
+		color: '#000000'
 	}
 });
 
@@ -68,16 +73,20 @@ class Nav extends Component {
 						<Collapse component='li' in={this.state.open} timeout='auto' unmountOnExit>
 							<List disablePadding>
 								<div onClick={closeDrawer}>
-									{db.projects.map((project) => (
-										<ListItemLink
-											to={project.path}
-											className={classes.nested}
-											onClick={this.handleRoute}
-											name={project.name}
-											button={true}
-											key={project.uid}
-										/>
-									))}
+									{db !== null ? (
+										db.projects.map((project) => (
+											<ListItemLink
+												to={project.path}
+												className={classes.nested}
+												onClick={this.handleRoute}
+												name={project.name}
+												button={true}
+												key={project.uid}
+											/>
+										))
+									) : (
+										<CircularProgress size={24} className={classes.progress} />
+									)}
 								</div>
 							</List>
 						</Collapse>
