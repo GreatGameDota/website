@@ -3,10 +3,7 @@ import Firebase from 'firebase';
 import config from './dbConfig';
 
 export default class Database extends Component {
-	state = {
-		users: [],
-		projects: []
-	};
+	state = config.reset;
 	constructor (props) {
 		super(props);
 		Firebase.initializeApp(config);

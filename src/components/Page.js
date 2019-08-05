@@ -92,8 +92,7 @@ function HideOnScroll (props) {
 function Page (props) {
 	const { container, title, page, add, remove } = props;
 	let { db } = props;
-	if (typeof db === 'undefined' || db.users.length === 0 || db.projects.length === 0) db = null;
-	db = null;
+	if (typeof db === 'undefined') db = null;
 	const classes = useStyles();
 	const theme = useTheme();
 	const [ mobileOpen, setMobileOpen ] = React.useState(false);
@@ -111,7 +110,7 @@ function Page (props) {
 			<Nav closeDrawer={handleDrawerClose} db={db} />
 			<Divider />
 			<List>
-				{[ '2' ].map((text, index) => (
+				{[ 'Temp button' ].map((text, index) => (
 					<ListItem button key={text}>
 						<ListItemIcon>
 							<MailIcon />
