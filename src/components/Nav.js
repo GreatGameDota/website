@@ -51,12 +51,14 @@ class Nav extends Component {
 	};
 
 	render () {
-		const { classes } = this.props;
+		const { classes, closeDrawer } = this.props;
 		return (
 			<div className={classes.root}>
 				<nav className={classes.lists} aria-label='mailbox folders'>
 					<List>
-						<ListItemLink to='/' onClick={this.handleRoute} name={routes[0]} button={true} />
+						<div onClick={closeDrawer}>
+							<ListItemLink to='/' onClick={this.handleRoute} name={routes[0]} button={true} />
+						</div>
 						<ListItemLink
 							to='/projects'
 							open={this.state.open}
@@ -66,13 +68,15 @@ class Nav extends Component {
 						/>
 						<Collapse component='li' in={this.state.open} timeout='auto' unmountOnExit>
 							<List disablePadding>
-								<ListItemLink
-									to='/projects/project1'
-									className={classes.nested}
-									onClick={this.handleRoute}
-									name={routes[2]}
-									button={true}
-								/>
+								<div onClick={closeDrawer}>
+									<ListItemLink
+										to='/projects/project1'
+										className={classes.nested}
+										onClick={this.handleRoute}
+										name={routes[2]}
+										button={true}
+									/>
+								</div>
 							</List>
 						</Collapse>
 					</List>

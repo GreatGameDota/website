@@ -95,12 +95,14 @@ function Page (props) {
 	function handleDrawerToggle () {
 		setMobileOpen(!mobileOpen);
 	}
-
+	function handleDrawerClose () {
+		setMobileOpen(false);
+	}
 	const drawer = (
 		<div>
 			<div className={classes.navTitle}>{title}</div>
 			<div className={classes.toolbar} />
-			<Nav />
+			<Nav closeDrawer={handleDrawerClose} />
 			<Divider />
 			<List>
 				{[ '2' ].map((text, index) => (
