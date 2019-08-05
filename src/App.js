@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, Redirect, BrowserRouter as Router } from 'react-router-dom';
-import Page from './components/Page';
-
+import Routes from './Routes';
 import Firebase from 'firebase';
 import config from './dbConfig';
 /*
@@ -49,55 +47,31 @@ class App extends Component {
 			users: [ ...prevState.users, data ]
 		}));
 	};
-	// handleSubmit = (event) => {
-	// 	event.preventDefault();
-	// 	let name = this.refs.name.value;
-	// 	let uid = this.refs.uid.value;
-
-	// 	if (uid && name && role) {
-	// 		const { developers } = this.state;
-	// 		const devIndex = developers.findIndex((data) => {
-	// 			return data.uid === uid;
-	// 		});
-	// 		developers[devIndex].name = name;
-	// 		developers[devIndex].role = role;
-	// 		this.setState({ developers });
-	// 	} else if (name && role) {
-	// 		const uid = new Date().getTime().toString();
-	// 		const { developers } = this.state;
-	// 		developers.push({ uid, name, role });
-	// 		this.setState({ developers });
-	// 	}
-
-	// 	this.refs.name.value = '';
-	// 	this.refs.uid.value = '';
-	// };
+	updateData = (event) => {
+		event.preventDefault();
+		let name = this.refs.name.value;
+		let uid = this.refs.uid.value;
+		if (uid && name) {
+			const { developers } = this.state;
+			const devIndex = developers.findIndex((data) => {
+				return data.uid === uid;
+			});
+			developers[devIndex].name = name;
+			this.setState({ developers });
+		} else if (name) {
+			const uid = new Date().getTime().toString();
+			this.setState((prevState) => ({
+				developers: [ ...prevState.developers, { uid, name } ]
+			}));
+		}
+		this.refs.name.value = '';
+		this.refs.uid.value = '';
+	};
 	render () {
 		return (
-			<Router>
-				<Switch>
-					<Route
-						exact
-						path='/'
-						render={(routeProps) => (
-							<Page
-								{...routeProps}
-								title='Home Page'
-								testDB={this.state}
-								add={this.addData}
-								remove={this.removeData}
-								page={0}
-							/>
-						)}
-					/>
-					<Route
-						exact
-						path='/projects/project1'
-						render={(routeProps) => <Page {...routeProps} title='Project1' testDB={this.state} page={1} />}
-					/>
-					<Redirect to='/' />
-				</Switch>
-			</Router>
+			<div>
+				<Routes db={this.state} addData={this.addData} removeData={this.removeData} />
+			</div>
 		);
 	}
 }
