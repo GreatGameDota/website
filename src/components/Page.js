@@ -18,6 +18,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Slide from '@material-ui/core/Slide';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Button from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Project1 from './Project1';
 import HomePage from './HomePage';
 import Footer from './Footer';
@@ -69,6 +70,9 @@ const useStyles = makeStyles((theme) => ({
 		[theme.breakpoints.up('sm')]: {
 			marginLeft: drawerWidth
 		}
+	},
+	progress: {
+		margin: '8px'
 	}
 }));
 
@@ -171,13 +175,19 @@ function Page (props) {
 				</nav>
 				<main className={classes.content}>
 					{renderPage}
-					{testDB !== null ? testDB.users.map((user) => user.name + ' ') : ''}
-					<Button variant='contained' onClick={add}>
-						Add Data
-					</Button>
-					<Button variant='contained' onClick={remove}>
-						Delete Data
-					</Button>
+					{testDB !== null ? (
+						<div>
+							{testDB.users.map((user) => user.name + ' ')}
+							<Button variant='contained' onClick={add}>
+								Add Data
+							</Button>
+							<Button variant='contained' onClick={remove}>
+								Delete Data
+							</Button>
+						</div>
+					) : (
+						<CircularProgress size={24} className={classes.progress} />
+					)}
 				</main>
 			</div>
 			<div className={classes.footer}>
