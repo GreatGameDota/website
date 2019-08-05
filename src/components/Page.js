@@ -17,6 +17,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Slide from '@material-ui/core/Slide';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+import Button from '@material-ui/core/Button';
 import Project1 from './Project1';
 import HomePage from './HomePage';
 import Footer from './Footer';
@@ -84,7 +85,9 @@ function HideOnScroll (props) {
 }
 
 function Page (props) {
-	const { container, title, page, testKey } = props;
+	const { container, title, page, add, remove } = props;
+	let { testDB } = props;
+	if (typeof testDB === 'undefined' || testDB.users.length === 0) testDB = null;
 	const classes = useStyles();
 	const theme = useTheme();
 	const [ mobileOpen, setMobileOpen ] = React.useState(false);
@@ -166,7 +169,13 @@ function Page (props) {
 				</nav>
 				<main className={classes.content}>
 					{renderPage}
-					{testKey}
+					{testDB !== null ? testDB.users.map((user) => user.name + ' ') : ''}
+					<Button variant='contained' onClick={add}>
+						Add Data
+					</Button>
+					<Button variant='contained' onClick={remove}>
+						Delete Data
+					</Button>
 				</main>
 			</div>
 			<div className={classes.footer}>

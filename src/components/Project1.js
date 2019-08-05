@@ -10,9 +10,11 @@ class Project1 extends Component {
 			<div>
 				Project1
 				<br />
-				<Button variant='contained' className={classes.button}>
-					<a href='https://github.com/GreatGameDota/my-website/archive/master.zip'>Download</a>
-				</Button>
+				<a href='https://github.com/GreatGameDota/my-website/archive/master.zip' className={classes.button}>
+					<Button variant='contained' className={classes.button}>
+						Download
+					</Button>
+				</a>
 			</div>
 		);
 	}
