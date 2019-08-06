@@ -27,65 +27,26 @@ export default class Database extends Component {
 		});
 	};
 	addData = (data, model) => {
-		switch (model) {
-			case 'user':
-				data = { uid: new Date().getTime().toString(), name: 'test name' };
-				this.setState((prevState) => ({
-					users: [ ...prevState.users, data ]
-				}));
-				break;
-			case 'project':
-				data = { uid: new Date().getTime().toString(), path: '/projects/Project1', name: 'Project1' };
-				this.setState((prevState) => ({
-					projects: [...prevState.projects, data]
-				}));
-				break;
-			default: 
-				console.log('Specify a data model')
-		}
+		data = { uid: new Date().getTime().toString(), name: 'test name' };
+		Firebase.database().ref('/').child(model).set([ ...this.state[model], data ]);
 	};
 	removeData = (newData, model) => {
-		let newState = 0;
-		switch (model) {
-			case 'user':
-				newData = this.state.users[0];
-				const { users } = this.state;
-				newState = users.filter((data) => {
-					return data.uid !== newData.uid;
-				});
-				this.setState({ users: newState });
-				break;
-			case 'project':
-				newData = this.state.projects[0];
-				const { projects } = this.state;
-				newState = projects.filter((data) => {
-					return data.uid !== newData.uid;
-				});
-				this.setState({ projects: newState });
-				break;
-			default: 
-				console.log('Specify a data model')
-		}
+		newData = this.state[model][0];
+		const newState = this.state[model].filter((data) => {
+			return data.uid !== newData.uid;
+		});
+		Firebase.database().ref('/').child(model).set(newState);
 	};
-	updateData = (event) => {
-		event.preventDefault();
-		let name = this.refs.name.value;
-		let uid = this.refs.uid.value;
-		if (uid && name) {
-			const { developers } = this.state;
-			const devIndex = developers.findIndex((data) => {
-				return data.uid === uid;
-			});
-			developers[devIndex].name = name;
-			this.setState({ developers });
-		} else if (name) {
-			const uid = new Date().getTime().toString();
-			this.setState((prevState) => ({
-				developers: [ ...prevState.developers, { uid, name } ]
-			}));
+	updateData = (newData, model) => {
+		newData = { uid: '1565049730183', name: 'test update name' };
+		const devIndex = this.state[model].findIndex((data) => {
+			return data.uid === newData.uid;
+		});
+		if (devIndex > -1) {
+			Firebase.database().ref('/').child(model).child(devIndex.toString()).set(newData);
+		} else {
+			console.log('No item with that id');
 		}
-		this.refs.name.value = '';
-		this.refs.uid.value = '';
 	};
 	render () {
 		const children = React.Children.map(this.props.children, (child) => {

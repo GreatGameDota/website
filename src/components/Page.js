@@ -180,10 +180,10 @@ function Page (props) {
 					{db !== null ? (
 						<div>
 							{db.users.map((user) => user.name + ' ')}
-							<Button variant='contained' onClick={() => add({}, 'user')}>
+							<Button variant='contained' onClick={() => add({}, 'users')}>
 								Add Data
 							</Button>
-							<Button variant='contained' onClick={() => remove({}, 'user')}>
+							<Button variant='contained' onClick={() => remove({}, 'users')}>
 								Delete Data
 							</Button>
 						</div>
