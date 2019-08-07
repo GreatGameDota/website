@@ -18,7 +18,7 @@ export default class Routes extends Component {
 					{db.projects.map((project, index) => (
 						<Route
 							exact
-							path={`/projects/${project.name.toLowerCase()}`}
+							path={`/projects/${project.name.toLowerCase().replace(/\s+/g, '-')}`}
 							render={(routeProps) => <Page {...routeProps} title={project.name} db={db} project={project} />}
 							key={project.uid}
 						/>
