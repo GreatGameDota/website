@@ -35,7 +35,7 @@ export default class Database extends Component {
 	addData = (data, model) => {
 		data = { uid: new Date().getTime().toString(), name: 'test name' };
 		Firebase.database().ref('/').child(model).set([ ...this.state[model], data ]);
-		// data = { uid: new Date().getTime().toString(), path: '/projects/project1', name: 'Project1' };
+		// data = { uid: new Date().getTime().toString(), name: 'Project1' };
 		// Firebase.database().ref('/').child('projects').set([ ...this.state['projects'], data ]);
 	};
 

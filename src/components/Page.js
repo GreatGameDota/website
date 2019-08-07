@@ -20,9 +20,9 @@ import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import primaryColor from '@material-ui/core/colors/blue'; // 50-900
-import Project1 from './Project1';
 import HomePage from './HomePage';
 import Footer from './Footer';
+import Project from './Project';
 
 const drawerWidth = 240,
 	colorPrimary = primaryColor[800];
@@ -79,8 +79,6 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
-const pages = [ <HomePage />, <Project1 /> ];
-
 function HideOnScroll (props) {
 	const { children, window } = props;
 	const trigger = useScrollTrigger({ target: window ? window() : undefined });
@@ -92,14 +90,13 @@ function HideOnScroll (props) {
 }
 
 function Page (props) {
-	const { container, title, page, add, remove } = props;
+	const { container, title, add, remove, project } = props;
 	let { db } = props;
 	// if (typeof db === 'undefined' || db.users.length === 0) db = null; // Use this when finished
 	if (typeof db === 'undefined') db = null;
 	const classes = useStyles();
 	const theme = useTheme();
 	const [ mobileOpen, setMobileOpen ] = React.useState(false);
-	const renderPage = pages[page];
 	function handleDrawerToggle () {
 		setMobileOpen(!mobileOpen);
 	}
@@ -178,7 +175,7 @@ function Page (props) {
 					</Hidden>
 				</nav>
 				<main className={classes.content}>
-					{renderPage}
+					{project === null ? <HomePage /> : <Project project={project} />}{/*Refactor this*/}
 					{db !== null ? (
 						<div>
 							{db.users.map((user) => user.name + ' ')}

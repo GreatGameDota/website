@@ -12,14 +12,14 @@ export default class Routes extends Component {
 						exact
 						path='/'
 						render={(routeProps) => (
-							<Page {...routeProps} title='Home Page' db={db} add={addData} remove={removeData} page={0} />
+							<Page {...routeProps} title='Home Page' db={db} add={addData} remove={removeData} project={null} />
 						)}
 					/>
 					{db.projects.map((project, index) => (
 						<Route
 							exact
-							path={project.path}
-							render={(routeProps) => <Page {...routeProps} title={project.name} db={db} page={index + 1} />}
+							path={`/projects/${project.name.toLowerCase()}`}
+							render={(routeProps) => <Page {...routeProps} title={project.name} db={db} project={project} />}
 							key={project.uid}
 						/>
 					))}
