@@ -19,11 +19,13 @@ import Slide from '@material-ui/core/Slide';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import primaryColor from '@material-ui/core/colors/blue'; // 50-900
 import Project1 from './Project1';
 import HomePage from './HomePage';
 import Footer from './Footer';
 
-const drawerWidth = 240;
+const drawerWidth = 240,
+	colorPrimary = primaryColor[800];
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -31,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	appBar: {
 		width: '100%',
-		backgroundColor: '#000000',
+		backgroundColor: colorPrimary,
 		zIndex: theme.zIndex.drawer + 1
 	},
 	menuButton: {
@@ -73,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	progress: {
 		margin: '8px',
-		color: '#000000'
+		color: colorPrimary
 	}
 }));
 
@@ -108,7 +110,7 @@ function Page (props) {
 		<div>
 			<div className={classes.navTitle}>{title}</div>
 			<div className={classes.toolbar} />
-			<Nav closeDrawer={handleDrawerClose} db={db} />
+			<Nav closeDrawer={handleDrawerClose} db={db} colorPrimary={colorPrimary} />
 			<Divider />
 			<List>
 				{[ 'Temp button' ].map((text, index) => (
@@ -193,7 +195,7 @@ function Page (props) {
 				</main>
 			</div>
 			<div className={classes.footer}>
-				<Footer />
+				<Footer colorPrimary={colorPrimary} />
 			</div>
 		</div>
 	);

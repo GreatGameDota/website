@@ -40,7 +40,7 @@ const styles = (theme) => ({
 	},
 	progress: {
 		marginLeft: '96px',
-		color: '#000000'
+		marginTop: '8px'
 	}
 });
 
@@ -54,9 +54,9 @@ class Nav extends Component {
 	};
 
 	render () {
-		const { classes, closeDrawer } = this.props;
+		const { classes, closeDrawer, colorPrimary } = this.props;
 		let { db } = this.props;
-		if (db.projects.length === 0) db = null;
+		if (db !== null && db.projects.length === 0) db = null;
 		return (
 			<div className={classes.root}>
 				<nav className={classes.lists} aria-label='mailbox folders'>
@@ -86,7 +86,7 @@ class Nav extends Component {
 											/>
 										))
 									) : (
-										<CircularProgress size={24} className={classes.progress} />
+										<CircularProgress size={24} className={classes.progress} style={{ color: colorPrimary }} />
 									)}
 								</div>
 							</List>
