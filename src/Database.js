@@ -33,10 +33,8 @@ export default class Database extends Component {
 	};
 
 	addData = (data, model) => {
-		data = { uid: new Date().getTime().toString(), name: 'test name' };
+		data['uid'] = new Date().getTime().toString();
 		Firebase.database().ref('/').child(model).set([ ...this.state[model], data ]);
-		// data = { uid: new Date().getTime().toString(), name: 'Project1' };
-		// Firebase.database().ref('/').child('projects').set([ ...this.state['projects'], data ]);
 	};
 
 	removeData = (newData, model) => {
@@ -50,7 +48,7 @@ export default class Database extends Component {
 	};
 
 	updateData = (newData, model) => {
-		newData = { uid: '1565049730183', name: 'test update name' };
+		// newData = { uid: '1565049730183', name: 'test update name' };
 		const devIndex = this.state[model].findIndex((data) => {
 			return data.uid === newData.uid;
 		});

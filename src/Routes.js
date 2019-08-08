@@ -12,7 +12,7 @@ export default class Routes extends Component {
 						exact
 						path='/'
 						render={(routeProps) => (
-							<Page {...routeProps} title='Home Page' db={db} add={addData} remove={removeData} project={null} />
+							<Page {...routeProps} title='Home Page' db={db} add={addData} remove={removeData} project='home' />
 						)}
 					/>
 					{db.projects.map((project, index) => (
@@ -23,6 +23,13 @@ export default class Routes extends Component {
 							key={project.uid}
 						/>
 					))}
+					<Route
+						exact
+						path='/projects/add'
+						render={(routeProps) => (
+							<Page {...routeProps} title='Add Project Form' db={db} add={addData} project='form' />
+						)}
+					/>
 					<Redirect to='/' />
 				</Switch>
 			</Router>

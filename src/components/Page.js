@@ -6,23 +6,22 @@ import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import MailIcon from '@material-ui/icons/Mail';
+// import List from '@material-ui/core/List';
+// import ListItem from '@material-ui/core/ListItem';
+// import ListItemIcon from '@material-ui/core/ListItemIcon';
+// import ListItemText from '@material-ui/core/ListItemText';
+// import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Slide from '@material-ui/core/Slide';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
-import Button from '@material-ui/core/Button';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import primaryColor from '@material-ui/core/colors/blue'; // 50-900
 import HomePage from './HomePage';
 import Footer from './Footer';
 import Project from './Project';
+import AddProjectForm from './AddProjectForm';
 
 const drawerWidth = 240,
 	colorPrimary = primaryColor[800];
@@ -60,8 +59,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	navTitle: {
 		paddingLeft: '25px',
-		paddingTop: '20px',
-		fontSize: '20px'
+		paddingTop: '20px'
 	},
 	content: {
 		padding: '0 8px',
@@ -90,7 +88,7 @@ function HideOnScroll (props) {
 }
 
 function Page (props) {
-	const { container, title, add, remove, project } = props;
+	const { container, title, project, add } = props;
 	let { db } = props;
 	// if (typeof db === 'undefined' || db.users.length === 0) db = null; // Use this when finished
 	if (typeof db === 'undefined') db = null;
@@ -105,11 +103,19 @@ function Page (props) {
 	}
 	const drawer = (
 		<div>
-			<div className={classes.navTitle}>{title}</div>
+			{title.length > 19 ? (
+				<div className={classes.navTitle} style={{ fontSize: (100 - title.length) / 5 }}>
+					{title}
+				</div>
+			) : (
+				<div className={classes.navTitle} style={{ fontSize: '20px' }}>
+					{title}
+				</div>
+			)}
 			<div className={classes.toolbar} />
 			<Nav closeDrawer={handleDrawerClose} db={db} colorPrimary={colorPrimary} />
 			<Divider />
-			<List>
+			{/* <List>
 				{[ 'Temp button' ].map((text, index) => (
 					<ListItem button key={text}>
 						<ListItemIcon>
@@ -118,7 +124,7 @@ function Page (props) {
 						<ListItemText primary={text} />
 					</ListItem>
 				))}
-			</List>
+			</List> */}
 		</div>
 	);
 
@@ -175,19 +181,12 @@ function Page (props) {
 					</Hidden>
 				</nav>
 				<main className={classes.content}>
-					{project === null ? <HomePage /> : <Project project={project} />}{/*Refactor this*/}
-					{db !== null ? (
-						<div>
-							{db.users.map((user) => user.name + ' ')}
-							<Button variant='contained' onClick={() => add({}, 'users')}>
-								Add Data
-							</Button>
-							<Button variant='contained' onClick={() => remove({}, 'users')}>
-								Delete Data
-							</Button>
-						</div>
+					{project === 'home' ? (
+						<HomePage />
+					) : project === 'form' ? (
+						<AddProjectForm db={db} add={add} />
 					) : (
-						<CircularProgress size={24} className={classes.progress} />
+						<Project project={project} />
 					)}
 				</main>
 			</div>

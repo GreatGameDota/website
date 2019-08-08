@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import Icon from '@material-ui/core/Icon';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Collapse from '@material-ui/core/Collapse';
 import ListItemText from '@material-ui/core/ListItemText';
 import ExpandLess from '@material-ui/icons/ExpandLess';
@@ -62,7 +64,15 @@ class Nav extends Component {
 				<nav className={classes.lists} aria-label='mailbox folders'>
 					<List>
 						<div onClick={closeDrawer}>
-							<ListItemLink to='/' onClick={this.handleRoute} name='Home' button={true} />
+							<ListItemLink to='/' name='Home' button={true} />
+							<List>
+								<ListItem component={Link} to='/projects/add' button>
+									<ListItemIcon>
+										<Icon>add_circle</Icon>
+									</ListItemIcon>
+									<ListItemText primary='Add Project' />
+								</ListItem>
+							</List>
 						</div>
 						<ListItemLink
 							to='/projects'
@@ -79,7 +89,6 @@ class Nav extends Component {
 											<ListItemLink
 												to={project.path}
 												className={classes.nested}
-												onClick={this.handleRoute}
 												name={project.name}
 												button={true}
 												key={project.uid}
