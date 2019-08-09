@@ -12,10 +12,10 @@ import { Link } from 'react-router-dom';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 function ListItemLink (props) {
-	const { to, open, name, button, loc, color, ...other } = props;
+	const { classes, to, open, name, button, loc, color, ...other } = props;
 	const listItem = button ? loc === to ? (
-		<ListItem button component={Link} to={to} {...other} style={{ color: color }}>
-			<ListItemText primary={name} />
+		<ListItem button component={Link} to={to} {...other}>
+			<ListItemText disableTypography primary={name} className={classes.selected} style={{ color: color }} />
 			{open != null ? open ? <ExpandLess /> : <ExpandMore /> : null}
 		</ListItem>
 	) : (
@@ -48,6 +48,12 @@ const styles = (theme) => ({
 	progress: {
 		marginLeft: '96px',
 		marginTop: '8px'
+	},
+	selected: {
+		fontWeight: '700',
+		fontSize: '1rem',
+		fontFamily: 'Roboto',
+		lineHeight: '1.5'
 	}
 });
 
@@ -69,14 +75,14 @@ class Nav extends Component {
 				<nav className={classes.lists} aria-label='mailbox folders'>
 					<List>
 						<div onClick={closeDrawer}>
-							<ListItemLink to='/' name='Home' button={true} loc={loc} color={colorPrimary} />
+							<ListItemLink to='/' name='Home' button={true} loc={loc} color={colorPrimary} classes={classes} />
 							<List>
 								<ListItem component={Link} to='/projects/add' button>
 									<ListItemIcon>
 										<Icon>add_circle</Icon>
 									</ListItemIcon>
 									{loc === '/projects/add' ? (
-										<ListItemText primary='Add Project' style={{ color: colorPrimary }} />
+										<ListItemText disableTypography primary='Add Project' className={classes.selected} style={{ color: colorPrimary }} />
 									) : (
 										<ListItemText primary='Add Project' />
 									)}
@@ -103,6 +109,7 @@ class Nav extends Component {
 												key={project.uid}
 												loc={loc}
 												color={colorPrimary}
+												classes={classes}
 											/>
 										))
 									) : (
