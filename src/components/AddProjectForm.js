@@ -7,6 +7,9 @@ class AddProjectForm extends Component {
 	addProject = (project) => {
 		fetch(`http://api.github.com/repos/GreatGameDota/${project.repo}`).then((res) => res.json()).then(
 			(result) => {
+				if (project.name === '') {
+					project.name = result.name;
+				}
 				project['link'] = result.html_url;
 				project['lang'] = result.language;
 				project['desc'] = result.description;
@@ -40,9 +43,7 @@ class AddProjectForm extends Component {
 					initialValues={initialValues}
 					validate={(values) => {
 						let errors = {};
-						if (!values.name) {
-							errors.name = 'Required';
-						} else if (values.name.replace(/ /g, '').length > 20) {
+						if (values.name.replace(/ /g, '').length > 20) {
 							errors.name = "Name can't be longer than 20 characters";
 						}
 						if (!values.repo) {
@@ -50,8 +51,8 @@ class AddProjectForm extends Component {
 						}
 						return errors;
 					}}
-					onSubmit={async (values, { setSubmitting, resetForm }) => {
-						await this.addProject(values);
+					onSubmit={(values, { setSubmitting, resetForm }) => {
+						this.addProject(values);
 						setSubmitting(false);
 						resetForm(initialValues);
 					}}
