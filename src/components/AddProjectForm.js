@@ -67,7 +67,7 @@ class AddProjectForm extends Component {
 								<ErrorMessage name='name' />
 							</span>
 							<br />
-							<label htmlFor='repo'>Github repo name </label>
+							<label htmlFor='repo'>Github Repo Name </label>
 							<Field type='text' name='repo' id='repo' placeholder='Repo Name' />
 							<span className={classes.error}>
 								<ErrorMessage name='repo' />

@@ -62,7 +62,6 @@ const useStyles = makeStyles((theme) => ({
 	navTitle: {
 		fontSize: '1.25rem',
 		lineHeight: '1.6',
-		fontWeight: '400',
 		margin: 0,
 		paddingTop: '1rem',
 		paddingLeft: '24px',

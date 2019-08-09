@@ -50,7 +50,7 @@ const styles = (theme) => ({
 		marginTop: '8px'
 	},
 	selected: {
-		fontWeight: '700',
+		fontWeight: '500',
 		fontSize: '1rem',
 		fontFamily: 'Roboto',
 		lineHeight: '1.5'
