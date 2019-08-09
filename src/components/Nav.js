@@ -72,7 +72,7 @@ class Nav extends Component {
 		if (db !== null && db.projects.length === 0) db = null;
 		return (
 			<div className={classes.root}>
-				<nav className={classes.lists} aria-label='mailbox folders'>
+				<nav className={classes.lists} aria-label='nav buttons'>
 					<List>
 						<div onClick={closeDrawer}>
 							<ListItemLink to='/' name='Home' button={true} loc={loc} color={colorPrimary} classes={classes} />

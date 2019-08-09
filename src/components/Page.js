@@ -6,11 +6,11 @@ import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
-// import List from '@material-ui/core/List';
-// import ListItem from '@material-ui/core/ListItem';
-// import ListItemIcon from '@material-ui/core/ListItemIcon';
-// import ListItemText from '@material-ui/core/ListItemText';
-// import MailIcon from '@material-ui/icons/Mail';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -60,8 +60,16 @@ const useStyles = makeStyles((theme) => ({
 		width: drawerWidth
 	},
 	navTitle: {
-		paddingLeft: '25px',
-		paddingTop: '20px'
+		fontSize: '1.25rem',
+		lineHeight: '1.6',
+		fontWeight: '400',
+		margin: 0,
+		paddingTop: '1rem',
+		paddingLeft: '24px',
+		display: 'block',
+		overflow: 'hidden',
+		whiteSpace: 'nowrap',
+		textOverflow: 'ellipsis'
 	},
 	content: {
 		padding: '0 8px',
@@ -107,20 +115,12 @@ function Page (props) {
 	}
 	const drawer = (
 		<div>
-			{title.length > 19 ? (
-				<div className={classes.navTitle} style={{ fontSize: (100 - title.length) / 5 }}>
-					{title}
-				</div>
-			) : (
-				<div className={classes.navTitle} style={{ fontSize: '20px' }}>
-					{title}
-				</div>
-			)}
+			<div className={classes.navTitle}>{title}</div>
 			<div className={classes.toolbar} />
 			<Divider />
 			<Nav closeDrawer={handleDrawerClose} db={db} colorPrimary={colorPrimary} loc={location.pathname} />
 			<Divider />
-			{/* <List>
+			<List>
 				{[ 'Temp button' ].map((text, index) => (
 					<ListItem button key={text}>
 						<ListItemIcon>
@@ -129,7 +129,7 @@ function Page (props) {
 						<ListItemText primary={text} />
 					</ListItem>
 				))}
-			</List> */}
+			</List>
 		</div>
 	);
 
