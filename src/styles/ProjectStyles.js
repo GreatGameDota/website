@@ -4,7 +4,7 @@ export default {
 	},
 	button: {
 		margin: 0,
-		padding: '10px',
+		padding: '6px',
 		textDecoration: 'none',
 		textTransform: 'none'
 	}

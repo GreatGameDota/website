@@ -14,14 +14,16 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles, useTheme, createMuiTheme } from '@material-ui/core/styles';
 import Slide from '@material-ui/core/Slide';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import primaryColor from '@material-ui/core/colors/blue'; // 50-900
+import { ThemeProvider } from '@material-ui/styles';
 import HomePage from './HomePage';
 import Footer from './Footer';
 import Project from './Project';
 import AddProjectForm from './AddProjectForm';
+import GlobalStyles from '../styles/GlobalStyles';
 
 const drawerWidth = 240,
 	colorPrimary = primaryColor[800];
@@ -77,6 +79,8 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
+const GlobalTheme = createMuiTheme(GlobalStyles);
+
 function HideOnScroll (props) {
 	const { children, window } = props;
 	const trigger = useScrollTrigger({ target: window ? window() : undefined });
@@ -114,7 +118,7 @@ function Page (props) {
 			)}
 			<div className={classes.toolbar} />
 			<Divider />
-			<Nav closeDrawer={handleDrawerClose} db={db} colorPrimary={colorPrimary} loc={location.pathname}/>
+			<Nav closeDrawer={handleDrawerClose} db={db} colorPrimary={colorPrimary} loc={location.pathname} />
 			<Divider />
 			{/* <List>
 				{[ 'Temp button' ].map((text, index) => (
@@ -130,71 +134,73 @@ function Page (props) {
 	);
 
 	return (
-		<div>
-			<div className={classes.root}>
-				<CssBaseline />
-				<HideOnScroll {...props}>
-					<AppBar position='fixed' className={classes.appBar}>
-						<Toolbar>
-							<IconButton
-								color='inherit'
-								aria-label='open drawer'
-								edge='start'
-								onClick={handleDrawerToggle}
-								className={classes.menuButton}
+		<ThemeProvider theme={GlobalTheme}>
+			<div>
+				<div className={classes.root}>
+					<CssBaseline />
+					<HideOnScroll {...props}>
+						<AppBar position='fixed' className={classes.appBar}>
+							<Toolbar>
+								<IconButton
+									color='inherit'
+									aria-label='open drawer'
+									edge='start'
+									onClick={handleDrawerToggle}
+									className={classes.menuButton}
+								>
+									<MenuIcon />
+								</IconButton>
+								<Typography variant='h6' noWrap>
+									{title}
+								</Typography>
+							</Toolbar>
+						</AppBar>
+					</HideOnScroll>
+					<nav className={classes.drawer} aria-label='mailbox folders'>
+						<Hidden smUp implementation='css'>
+							<Drawer
+								container={container}
+								variant='temporary'
+								anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+								open={mobileOpen}
+								onClose={handleDrawerToggle}
+								classes={{
+									paper: classes.drawerPaper
+								}}
+								ModalProps={{
+									keepMounted: true // Better open performance on mobile.
+								}}
 							>
-								<MenuIcon />
-							</IconButton>
-							<Typography variant='h6' noWrap>
-								{title}
-							</Typography>
-						</Toolbar>
-					</AppBar>
-				</HideOnScroll>
-				<nav className={classes.drawer} aria-label='mailbox folders'>
-					<Hidden smUp implementation='css'>
-						<Drawer
-							container={container}
-							variant='temporary'
-							anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-							open={mobileOpen}
-							onClose={handleDrawerToggle}
-							classes={{
-								paper: classes.drawerPaper
-							}}
-							ModalProps={{
-								keepMounted: true // Better open performance on mobile.
-							}}
-						>
-							{drawer}
-						</Drawer>
-					</Hidden>
-					<Hidden xsDown implementation='css'>
-						<Drawer
-							classes={{
-								paper: classes.drawerPaper
-							}}
-							variant='permanent'
-							open
-						>
-							{drawer}
-						</Drawer>
-					</Hidden>
-				</nav>
-				<main className={classes.content}>
-					{project === 'home' ? (
-						<HomePage />
-					) : project === 'form' ? (
-						<AddProjectForm db={db} add={add} />
-					) : (
-						<Project project={project} />
-					)}
-				</main>
+								{drawer}
+							</Drawer>
+						</Hidden>
+						<Hidden xsDown implementation='css'>
+							<Drawer
+								classes={{
+									paper: classes.drawerPaper
+								}}
+								variant='permanent'
+								open
+							>
+								{drawer}
+							</Drawer>
+						</Hidden>
+					</nav>
+					<main className={classes.content}>
+						{project === 'home' ? (
+							<HomePage />
+						) : project === 'form' ? (
+							<AddProjectForm db={db} add={add} />
+						) : (
+							<Project project={project} />
+						)}
+					</main>
+				</div>
+				<div className={classes.footer}>
+					<Footer colorPrimary={colorPrimary} />
+				</div>
 			</div>
-			<div className={classes.footer}>
-				<Footer colorPrimary={colorPrimary} />
-			</div>
-		</div>
+		</ThemeProvider>
 	);
 }
 

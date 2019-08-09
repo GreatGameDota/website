@@ -12,7 +12,7 @@ class Project extends Component {
 				<h1>{project.name}</h1>
 				<a href={project.link} className={classes.button}>
 					<IconButton className={classes.button} aria-label='github'>
-						<img src={GithubIcon} alt='github' width='25px' height='25px' />
+						<img src={GithubIcon} alt='github' width='35px' height='35px' />
 					</IconButton>
 				</a>
 			</div>
