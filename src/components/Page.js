@@ -88,7 +88,7 @@ function HideOnScroll (props) {
 }
 
 function Page (props) {
-	const { container, title, project, add } = props;
+	const { container, title, project, add, location } = props;
 	let { db } = props;
 	// if (typeof db === 'undefined' || db.users.length === 0) db = null; // Use this when finished
 	if (typeof db === 'undefined') db = null;
@@ -113,7 +113,8 @@ function Page (props) {
 				</div>
 			)}
 			<div className={classes.toolbar} />
-			<Nav closeDrawer={handleDrawerClose} db={db} colorPrimary={colorPrimary} />
+			<Divider />
+			<Nav closeDrawer={handleDrawerClose} db={db} colorPrimary={colorPrimary} loc={location.pathname}/>
 			<Divider />
 			{/* <List>
 				{[ 'Temp button' ].map((text, index) => (
