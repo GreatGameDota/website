@@ -5,12 +5,35 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 class AddProjectForm extends Component {
 	addProject = (project) => {
-		project['path'] = `/projects/${project.name.toLowerCase().replace(/\s+/g, '-')}`;
-		this.props.add(project, 'projects');
+		fetch(`http://api.github.com/repos/GreatGameDota/${project.repo}`).then((res) => res.json()).then(
+			(result) => {
+				project['link'] = result.html_url;
+				project['lang'] = result.language;
+				project['desc'] = result.description;
+				project['homepage'] = result.homepage;
+				project['path'] = `/projects/${project.name.toLowerCase().replace(/\s+/g, '-')}`;
+				fetch(`http://api.github.com/repos/GreatGameDota/${project.repo}/topics`, {
+					headers: { Accept: 'application/vnd.github.mercy-preview+json' }
+				})
+					.then((res) => res.json())
+					.then(
+						(result) => {
+							project['topics'] = result.names;
+							this.props.add(project, 'projects');
+						},
+						(err) => {
+							console.log(`Error: ${err}`);
+						}
+					);
+			},
+			(err) => {
+				console.log(`Error: ${err}`);
+			}
+		);
 	};
 	render () {
 		const { classes } = this.props;
-		const initialValues = { name: '', link: '' };
+		const initialValues = { name: '', repo: '' };
 		return (
 			<div className={classes.root}>
 				<Formik
@@ -22,19 +45,13 @@ class AddProjectForm extends Component {
 						} else if (values.name.replace(/ /g, '').length > 20) {
 							errors.name = "Name can't be longer than 20 characters";
 						}
-						if (!values.link) {
-							errors.link = 'Required';
-						} else if (
-							!/^(?:(?:https?|ftp):\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,}))\.?)(?::\d{2,5})?(?:[/?#]\S*)?$/i.test(
-								values.link
-							)
-						) {
-							errors.link = 'Submit valid link';
+						if (!values.repo) {
+							errors.repo = 'Required';
 						}
 						return errors;
 					}}
-					onSubmit={(values, { setSubmitting, resetForm }) => {
-						this.addProject(values);
+					onSubmit={async (values, { setSubmitting, resetForm }) => {
+						await this.addProject(values);
 						setSubmitting(false);
 						resetForm(initialValues);
 					}}
@@ -43,16 +60,16 @@ class AddProjectForm extends Component {
 				>
 					{({ isSubmitting }) => (
 						<Form>
-							<label for='name'>Project Name </label>
+							<label htmlFor='name'>Project Name </label>
 							<Field type='text' name='name' id='name' placeholder='Name' />
 							<span className={classes.error}>
 								<ErrorMessage name='name' />
 							</span>
 							<br />
-							<label for='link'>Project Link </label>
-							<Field type='text' name='link' id='link' placeholder='Link' />
+							<label htmlFor='repo'>Github repo name </label>
+							<Field type='text' name='repo' id='repo' placeholder='Repo Name' />
 							<span className={classes.error}>
-								<ErrorMessage name='link' />
+								<ErrorMessage name='repo' />
 							</span>
 							<br />
 							<button type='submit' disabled={isSubmitting}>
