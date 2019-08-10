@@ -2,7 +2,7 @@ export default {
 	root: {
 		display: 'grid',
 		gridTemplateAreas: `'_ title github'
-												'lang body delete'`
+												'lang desc delete'`
 	},
 	title: {
 		fontSize: '2em',
@@ -42,5 +42,9 @@ export default {
 	},
 	chip: {
 		margin: '1px'
+	},
+	desc: {
+		gridArea: 'desc',
+		justifySelf: 'center'
 	}
 };

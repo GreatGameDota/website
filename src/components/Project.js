@@ -60,7 +60,7 @@ class Project extends Component {
 				<div>
 					<div className={classes.root}>
 						<div className={classes.title}>{project.name} </div>
-						<a href={project.link} className={classes.button}>
+						<a href={project.link} target='_blank' rel='noopener noreferrer' className={classes.button}>
 							<Tooltip title='Github Source' placement='left' TransitionComponent={Zoom}>
 								<IconButton className={classes.button} aria-label='github'>
 									<img src={GithubIcon} alt='github' width='35px' height='35px' />
@@ -77,6 +77,7 @@ class Project extends Component {
 							<Icon>code</Icon>
 							<div className={classes.lang}>{project.lang}</div>
 						</div>
+						<div className={classes.desc}>{project.desc}</div>
 					</div>
 					<div>{project.topics.map((topic, index) => <Chip label={topic} className={classes.chip} key={index} />)}</div>
 					<br />
