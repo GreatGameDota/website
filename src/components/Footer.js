@@ -4,9 +4,9 @@ import styles from '../styles/FooterStyles';
 
 class Footer extends Component {
 	render () {
-		const { classes, colorPrimary } = this.props;
+		const { classes } = this.props;
 		return (
-			<div className={classes.root} style={{ backgroundColor: colorPrimary }}>
+			<div className={classes.root}>
 				Footer
 			</div>
 		);

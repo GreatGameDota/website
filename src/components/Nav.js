@@ -12,10 +12,10 @@ import { Link } from 'react-router-dom';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 function ListItemLink (props) {
-	const { classes, to, open, name, button, loc, color, ...other } = props;
+	const { classes, to, open, name, button, loc, ...other } = props;
 	const listItem = button ? loc === to ? (
 		<ListItem button component={Link} to={to} {...other}>
-			<ListItemText disableTypography primary={name} className={classes.selected} style={{ color: color }} />
+			<ListItemText disableTypography primary={name} className={classes.selected} />
 			{open != null ? open ? <ExpandLess /> : <ExpandMore /> : null}
 		</ListItem>
 	) : (
@@ -46,12 +46,14 @@ const styles = (theme) => ({
 		paddingLeft: theme.spacing(4)
 	},
 	progress: {
+		color: (props) => props.colorPrimary,
 		marginTop: '8px',
 		display: 'block',
 		marginLeft: 'auto',
 		marginRight: 'auto'
 	},
 	selected: {
+		color: (props) => props.colorPrimary,
 		fontWeight: '500',
 		fontSize: '1rem',
 		fontFamily: 'Roboto',
@@ -69,7 +71,7 @@ class Nav extends Component {
 	};
 
 	render () {
-		const { classes, closeDrawer, colorPrimary, loc } = this.props;
+		const { classes, closeDrawer, loc } = this.props;
 		let { db } = this.props;
 		if (db !== null && db.projects.length === 0) db = null;
 		return (
@@ -77,19 +79,14 @@ class Nav extends Component {
 				<nav className={classes.lists} aria-label='nav buttons'>
 					<List>
 						<div onClick={closeDrawer}>
-							<ListItemLink to='/' name='Home' button={true} loc={loc} color={colorPrimary} classes={classes} />
+							<ListItemLink to='/' name='Home' button={true} loc={loc} classes={classes} />
 							<List>
 								<ListItem component={Link} to='/projects/add' button>
 									<ListItemIcon>
 										<Icon>add_circle</Icon>
 									</ListItemIcon>
 									{loc === '/projects/add' ? (
-										<ListItemText
-											disableTypography
-											primary='Add Project'
-											className={classes.selected}
-											style={{ color: colorPrimary }}
-										/>
+										<ListItemText disableTypography primary='Add Project' className={classes.selected} />
 									) : (
 										<ListItemText primary='Add Project' />
 									)}
@@ -115,12 +112,11 @@ class Nav extends Component {
 												button={true}
 												key={project.uid}
 												loc={loc}
-												color={colorPrimary}
 												classes={classes}
 											/>
 										))
 									) : (
-										<CircularProgress size={24} className={classes.progress} style={{ color: colorPrimary }} />
+										<CircularProgress size={24} className={classes.progress} />
 									)}
 								</div>
 							</List>
