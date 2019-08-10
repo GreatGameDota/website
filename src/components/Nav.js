@@ -52,7 +52,7 @@ const styles = (theme) => ({
 		marginRight: 'auto'
 	},
 	selected: {
-		fontWeight: '700',
+		fontWeight: '500',
 		fontSize: '1rem',
 		fontFamily: 'Roboto',
 		lineHeight: '1.5'
