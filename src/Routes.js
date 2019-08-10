@@ -5,13 +5,13 @@ import Page from './components/Page';
 
 export default class Routes extends Component {
 	history = createBrowserHistory(this.props);
-	
+
 	render () {
 		const { db, addData, removeData, updateData } = this.props;
 
-		this.history.listen((location) => {
+		this.history.listen((location, action) => {
 			setTimeout(() => {
-				if (location.action === 'POP') {
+				if (action === 'POP') {
 					return;
 				}
 				window.scrollTo(0, 0);
