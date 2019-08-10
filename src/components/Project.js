@@ -6,6 +6,10 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import GithubIcon from '../resources/github.svg';
+import Tooltip from '@material-ui/core/Tooltip';
+import Zoom from '@material-ui/core/Zoom';
+import Chip from '@material-ui/core/Chip';
+import Icon from '@material-ui/core/Icon';
 
 class Project extends Component {
 	state = {
@@ -53,22 +57,39 @@ class Project extends Component {
 		const { updating } = this.state;
 		if (!updating) {
 			return (
-				<div className={classes.root}>
-					<div className={classes.title}>{project.name} </div>
-					<a href={project.link} className={classes.button}>
-						<IconButton className={classes.button} aria-label='github'>
-							<img src={GithubIcon} alt='github' width='35px' height='35px' />
-						</IconButton>
-					</a>
-					<Button onClick={this.deleteProject} variant='contained' color='secondary' className={classes.delete}>
-						Delete
-						<DeleteIcon className={classes.rightIcon} />
-					</Button>
+				<div>
+					<div className={classes.root}>
+						<div className={classes.title}>{project.name} </div>
+						<a href={project.link} className={classes.button}>
+							<Tooltip title='Github Source' placement='left' TransitionComponent={Zoom}>
+								<IconButton className={classes.button} aria-label='github'>
+									<img src={GithubIcon} alt='github' width='35px' height='35px' />
+								</IconButton>
+							</Tooltip>
+						</a>
+						<Tooltip title='Delete This Project' placement='left' TransitionComponent={Zoom}>
+							<Button onClick={this.deleteProject} variant='contained' color='secondary' className={classes.delete}>
+								Delete
+								<DeleteIcon className={classes.rightIcon} />
+							</Button>
+						</Tooltip>
+						<div className={classes.langContainer}>
+							<Icon>code</Icon>
+							<div className={classes.lang}>{project.lang}</div>
+						</div>
+					</div>
+					<div>
+						{project.topics.map((topic, index) => (
+							<div className={classes.chip} key={index}>
+								<Chip label={topic} className={classes.chip} />
+							</div>
+						))}
+					</div>
 				</div>
 			);
 		} else {
 			return (
-				<div>
+				<div className={classes.progress}>
 					<LinearProgress
 						classes={{
 							colorPrimary: classes.colorPrimary,

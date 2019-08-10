@@ -3,7 +3,6 @@ export default {
 		display: 'grid',
 		gridTemplateAreas: `'_ title github'
 												'lang body delete'`
-		// 'tags body body'`
 	},
 	title: {
 		fontSize: '2em',
@@ -24,10 +23,25 @@ export default {
 	rightIcon: {
 		marginLeft: '8px'
 	},
+	progress: {
+		marginBottom: '150px'
+	},
 	colorPrimary: {
 		backgroundColor: (props) => props.brightPrimary
 	},
 	barColorPrimary: {
 		backgroundColor: (props) => props.colorPrimary
+	},
+	langContainer: {
+		gridArea: 'lang'
+	},
+	lang: {
+		float: 'left',
+		fontSize: '17px',
+		paddingRight: '4px'
+	},
+	chip: {
+		display: 'flex',
+		margin: '1px'
 	}
 };
