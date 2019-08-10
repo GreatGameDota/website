@@ -11,6 +11,7 @@ class Project extends Component {
 	state = {
 		updating: false
 	};
+
 	updateData = (project) => {
 		this.setState({ updating: true });
 		fetch(`http://api.github.com/repos/GreatGameDota/${project.repo}`).then((res) => res.json()).then(
@@ -38,12 +39,15 @@ class Project extends Component {
 			}
 		);
 	};
+
 	deleteProject = () => {
 		this.props.remove(this.props.project, 'projects');
 	};
+
 	componentDidMount () {
 		this.updateData(this.props.project);
 	}
+	
 	render () {
 		const { classes, project, colorPrimary } = this.props;
 		const { updating } = this.state;

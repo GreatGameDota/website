@@ -3,7 +3,7 @@ export default {
 		display: 'grid',
 		gridTemplateAreas: `'_ title github'
 												'lang body delete'`
-												// 'tags body body'`
+		// 'tags body body'`
 	},
 	title: {
 		fontSize: '2em',
@@ -25,9 +25,8 @@ export default {
 		marginLeft: '8px'
 	},
 	progress: {
-		marginTop: '8px',
-		marginBottom: '100px',
 		display: 'block',
-		margin: '0 auto'
+		margin: '0 auto',
+		marginBottom: '100px'
 	}
 };

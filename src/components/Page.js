@@ -101,7 +101,6 @@ function HideOnScroll (props) {
 function Page (props) {
 	const { container, title, project, location, add, update, remove } = props;
 	let { db } = props;
-	// if (typeof db === 'undefined' || db.users.length === 0) db = null; // Use this when finished
 	if (typeof db === 'undefined') db = null;
 	const classes = useStyles();
 	const theme = useTheme();
@@ -155,7 +154,7 @@ function Page (props) {
 							</Toolbar>
 						</AppBar>
 					</HideOnScroll>
-					<nav className={classes.drawer} aria-label='mailbox folders'>
+					<nav className={classes.drawer} aria-label='nav buttons'>
 						<Hidden smUp implementation='css'>
 							<Drawer
 								container={container}
@@ -189,11 +188,10 @@ function Page (props) {
 						{project === 'home' ? (
 							<HomePage colorPrimary={colorPrimary} />
 						) : project === 'form' ? (
-							<AddProjectForm db={db} add={add} colorPrimary={colorPrimary} />
+							<AddProjectForm add={add} colorPrimary={colorPrimary} />
 						) : (
 							<Project
 								project={project}
-								db={db}
 								add={add}
 								remove={remove}
 								update={update}
