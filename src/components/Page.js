@@ -26,7 +26,8 @@ import AddProjectForm from './AddProjectForm';
 import GlobalStyles from '../styles/GlobalStyles';
 
 const drawerWidth = 240,
-	colorPrimary = primaryColor[800];
+	colorPrimary = primaryColor[800],
+	brightPrimary = primaryColor[100];
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -73,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
 	content: {
 		padding: '0 8px',
 		width: '100%',
-		paddingTop: 'calc(64px + 8px)'
+		paddingTop: '72px'
 	},
 	footer: {
 		[theme.breakpoints.up('sm')]: {
@@ -196,6 +197,7 @@ function Page (props) {
 								remove={remove}
 								update={update}
 								colorPrimary={colorPrimary}
+								brightPrimary={brightPrimary}
 							/>
 						)}
 					</main>

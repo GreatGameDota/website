@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/styles';
+import styles from '../styles/ProjectStyles';
 import IconButton from '@material-ui/core/IconButton';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
-import styles from '../styles/ProjectStyles';
 import GithubIcon from '../resources/github.svg';
 
 class Project extends Component {
@@ -47,9 +47,9 @@ class Project extends Component {
 	componentDidMount () {
 		this.updateData(this.props.project);
 	}
-	
+
 	render () {
-		const { classes, project, colorPrimary } = this.props;
+		const { classes, project } = this.props;
 		const { updating } = this.state;
 		if (!updating) {
 			return (
@@ -67,7 +67,16 @@ class Project extends Component {
 				</div>
 			);
 		} else {
-			return <CircularProgress size={48} className={classes.progress} style={{ color: colorPrimary }} />;
+			return (
+				<div>
+					<LinearProgress
+						classes={{
+							colorPrimary: classes.colorPrimary,
+							barColorPrimary: classes.barColorPrimary
+						}}
+					/>
+				</div>
+			);
 		}
 	}
 }

@@ -9,11 +9,9 @@ import Database from './Database';
 class App extends Component {
 	render () {
 		return (
-			<div>
-				<Database>
-					<Routes />
-				</Database>
-			</div>
+			<Database>
+				<Routes />
+			</Database>
 		);
 	}
 }

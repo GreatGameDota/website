@@ -24,9 +24,10 @@ export default {
 	rightIcon: {
 		marginLeft: '8px'
 	},
-	progress: {
-		display: 'block',
-		margin: '0 auto',
-		marginBottom: '100px'
+	colorPrimary: {
+		backgroundColor: (props) => props.brightPrimary
+	},
+	barColorPrimary: {
+		backgroundColor: (props) => props.colorPrimary
 	}
 };
