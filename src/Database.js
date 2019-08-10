@@ -38,7 +38,6 @@ export default class Database extends Component {
 	};
 
 	removeData = (newData, model) => {
-		newData = this.state[model][0];
 		const newArr = this.state[model].filter((data) => {
 			return data.uid !== newData.uid;
 		});
