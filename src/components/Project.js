@@ -59,17 +59,17 @@ class Project extends Component {
 			return (
 				<div>
 					<div className={classes.root}>
-						<div className={classes.title}>{project.name} </div>
+						<div className={classes.title}>{project.name}</div>
 						<a href={project.link} target='_blank' rel='noopener noreferrer' className={classes.button}>
 							<Tooltip title='Github Source' placement='left' TransitionComponent={Zoom}>
 								<IconButton className={classes.button} aria-label='github'>
-									<img src={GithubIcon} alt='github' width='35px' height='35px' />
+									<img src={GithubIcon} alt='github' width='45px' height='45px' />
 								</IconButton>
 							</Tooltip>
 						</a>
 						<Tooltip title='Delete This Project' placement='left' TransitionComponent={Zoom}>
 							<Button onClick={this.deleteProject} variant='contained' color='secondary' className={classes.delete}>
-								Delete
+								<span className={classes.deleteText}>Delete</span>
 								<DeleteIcon className={classes.rightIcon} />
 							</Button>
 						</Tooltip>

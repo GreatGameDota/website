@@ -1,12 +1,25 @@
 import React, { Component } from 'react';
-import { Route, Switch, Redirect, BrowserRouter as Router } from 'react-router-dom';
+import { Route, Switch, Redirect, Router } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 import Page from './components/Page';
 
 export default class Routes extends Component {
+	history = createBrowserHistory(this.props);
+	
 	render () {
 		const { db, addData, removeData, updateData } = this.props;
+
+		this.history.listen((location) => {
+			setTimeout(() => {
+				if (location.action === 'POP') {
+					return;
+				}
+				window.scrollTo(0, 0);
+			});
+		});
+
 		return (
-			<Router>
+			<Router history={this.history}>
 				<Switch>
 					<Route
 						exact

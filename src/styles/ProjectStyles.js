@@ -1,6 +1,7 @@
 export default {
 	root: {
 		display: 'grid',
+		gridGap: '4px',
 		gridTemplateAreas: `'_ title github'
 												'lang desc delete'`
 	},
@@ -16,9 +17,12 @@ export default {
 		justifySelf: 'end'
 	},
 	delete: {
-		letterSpacing: '0.02857em',
 		gridArea: 'delete',
 		justifySelf: 'end'
+	},
+	deleteText: {
+		fontSize: '17px',
+		letterSpacing: '0.02857em'
 	},
 	rightIcon: {
 		marginLeft: '8px'
@@ -41,7 +45,7 @@ export default {
 		paddingRight: '4px'
 	},
 	chip: {
-		margin: '1px'
+		margin: '4px'
 	},
 	desc: {
 		gridArea: 'desc',
