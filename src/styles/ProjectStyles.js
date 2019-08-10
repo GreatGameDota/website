@@ -7,5 +7,11 @@ export default {
 		padding: '6px',
 		textDecoration: 'none',
 		textTransform: 'none'
+	},
+	progress: {
+		marginTop: '8px',
+		display: 'block',
+		marginLeft: 'auto',
+		marginRight: 'auto'
 	}
 };

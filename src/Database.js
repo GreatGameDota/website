@@ -48,7 +48,6 @@ export default class Database extends Component {
 	};
 
 	updateData = (newData, model) => {
-		// newData = { uid: '1565049730183', name: 'test update name' };
 		const devIndex = this.state[model].findIndex((data) => {
 			return data.uid === newData.uid;
 		});
@@ -64,7 +63,8 @@ export default class Database extends Component {
 			return React.cloneElement(child, {
 				db: this.state,
 				addData: this.addData,
-				removeData: this.removeData
+				removeData: this.removeData,
+				updateData: this.updateData
 			});
 		});
 		return <div>{children}</div>;

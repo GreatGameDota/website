@@ -100,7 +100,7 @@ function HideOnScroll (props) {
 }
 
 function Page (props) {
-	const { container, title, project, add, location } = props;
+	const { container, title, project, location, add, update, remove } = props;
 	let { db } = props;
 	// if (typeof db === 'undefined' || db.users.length === 0) db = null; // Use this when finished
 	if (typeof db === 'undefined') db = null;
@@ -188,11 +188,18 @@ function Page (props) {
 					</nav>
 					<main className={classes.content}>
 						{project === 'home' ? (
-							<HomePage />
+							<HomePage colorPrimary={colorPrimary} />
 						) : project === 'form' ? (
-							<AddProjectForm db={db} add={add} />
+							<AddProjectForm db={db} add={add} colorPrimary={colorPrimary} />
 						) : (
-							<Project project={project} />
+							<Project
+								project={project}
+								db={db}
+								add={add}
+								remove={remove}
+								update={update}
+								colorPrimary={colorPrimary}
+							/>
 						)}
 					</main>
 				</div>

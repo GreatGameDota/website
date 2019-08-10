@@ -46,8 +46,10 @@ const styles = (theme) => ({
 		paddingLeft: theme.spacing(4)
 	},
 	progress: {
-		marginLeft: '96px',
-		marginTop: '8px'
+		marginTop: '8px',
+		display: 'block',
+		marginLeft: 'auto',
+		marginRight: 'auto'
 	},
 	selected: {
 		fontWeight: '700',
@@ -82,7 +84,12 @@ class Nav extends Component {
 										<Icon>add_circle</Icon>
 									</ListItemIcon>
 									{loc === '/projects/add' ? (
-										<ListItemText disableTypography primary='Add Project' className={classes.selected} style={{ color: colorPrimary }} />
+										<ListItemText
+											disableTypography
+											primary='Add Project'
+											className={classes.selected}
+											style={{ color: colorPrimary }}
+										/>
 									) : (
 										<ListItemText primary='Add Project' />
 									)}
