@@ -41,7 +41,6 @@ export default {
 		paddingRight: '4px'
 	},
 	chip: {
-		display: 'flex',
 		margin: '1px'
 	}
 };

@@ -78,13 +78,8 @@ class Project extends Component {
 							<div className={classes.lang}>{project.lang}</div>
 						</div>
 					</div>
-					<div>
-						{project.topics.map((topic, index) => (
-							<div className={classes.chip} key={index}>
-								<Chip label={topic} className={classes.chip} />
-							</div>
-						))}
-					</div>
+					<div>{project.topics.map((topic, index) => <Chip label={topic} className={classes.chip} key={index} />)}</div>
+					<br />
 				</div>
 			);
 		} else {
