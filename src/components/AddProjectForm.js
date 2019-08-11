@@ -12,7 +12,7 @@ class AddProjectForm extends Component {
 		fetch(`http://api.github.com/repos/GreatGameDota/${project.repo}`)
 			.then((res) => {
 				if (res.ok) {
-					res.json();
+					return res.json();
 				} else {
 					this.setState({ error: `${res.statusText} - Invalid Repo Name` });
 					throw Error(res.statusText);
@@ -37,6 +37,11 @@ class AddProjectForm extends Component {
 					});
 			})
 			.catch((e) => console.error(`${e} - Invalid Repo Name`));
+		return new Promise((res, rej) => {
+			setTimeout(function () {
+				res();
+			}, 300);
+		});
 	};
 
 	render () {
@@ -58,9 +63,12 @@ class AddProjectForm extends Component {
 						return errors;
 					}}
 					onSubmit={(values, { setSubmitting, resetForm }) => {
-						this.addProject(values);
-						setSubmitting(false);
-						resetForm(initialValues);
+						this.addProject(values).then((result) => {
+							setSubmitting(false);
+							if (!this.state.error) {
+								resetForm(initialValues);
+							}
+						});
 					}}
 					validateOnBlur={false}
 					validateOnChange={false}
