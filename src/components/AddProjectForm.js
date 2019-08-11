@@ -4,9 +4,21 @@ import styles from '../styles/AddProjectFormStyles';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 class AddProjectForm extends Component {
+	state = {
+		error: ''
+	};
+
 	addProject = (project) => {
-		fetch(`http://api.github.com/repos/GreatGameDota/${project.repo}`).then((res) => res.json()).then(
-			(result) => {
+		fetch(`http://api.github.com/repos/GreatGameDota/${project.repo}`)
+			.then((res) => {
+				if (res.ok) {
+					res.json();
+				} else {
+					this.setState({ error: `${res.statusText} - Invalid Repo Name` });
+					throw Error(res.statusText);
+				}
+			})
+			.then((result) => {
 				if (project.name === '') {
 					project.name = result.name;
 				}
@@ -19,21 +31,14 @@ class AddProjectForm extends Component {
 					headers: { Accept: 'application/vnd.github.mercy-preview+json' }
 				})
 					.then((res) => res.json())
-					.then(
-						(result) => {
-							project['topics'] = result.names;
-							this.props.add(project, 'projects');
-						},
-						(err) => {
-							console.log(`Error: ${err}`);
-						}
-					);
-			},
-			(err) => {
-				console.log(`Error: ${err}`);
-			}
-		);
+					.then((result) => {
+						project['topics'] = result.names;
+						this.props.add(project, 'projects');
+					});
+			})
+			.catch((e) => console.error(`${e} - Invalid Repo Name`));
 	};
+
 	render () {
 		const { classes } = this.props;
 		const initialValues = { name: '', repo: '' };
@@ -42,12 +47,13 @@ class AddProjectForm extends Component {
 				<Formik
 					initialValues={initialValues}
 					validate={(values) => {
+						this.setState({ error: '' });
 						let errors = {};
 						if (values.name.replace(/ /g, '').length > 20) {
-							errors.name = "Name can't be longer than 20 characters";
+							errors.name = " Name can't be longer than 20 characters";
 						}
 						if (!values.repo) {
-							errors.repo = 'Required';
+							errors.repo = ' Required';
 						}
 						return errors;
 					}}
@@ -71,6 +77,7 @@ class AddProjectForm extends Component {
 							<Field type='text' name='repo' id='repo' placeholder='Repo Name' />
 							<span className={classes.error}>
 								<ErrorMessage name='repo' />
+								<span className={classes.error}> {this.state.error}</span>
 							</span>
 							<br />
 							<button type='submit' disabled={isSubmitting}>
