@@ -13,7 +13,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 function ListItemLink (props) {
 	const { classes, to, open, name, button, loc, ...other } = props;
-	const listItem = button ? loc === to ? (
+	const listItem = button ? loc === `/projects/${to}` ? (
 		<ListItem button component={Link} to={to} {...other}>
 			<ListItemText disableTypography primary={name} className={classes.selected} />
 			{open != null ? open ? <ExpandLess /> : <ExpandMore /> : null}
@@ -81,11 +81,11 @@ class Nav extends Component {
 						<div onClick={closeDrawer}>
 							<ListItemLink to='/' name='Home' button={true} loc={loc} classes={classes} />
 							<List>
-								<ListItem component={Link} to='/projects/add' button>
+								<ListItem component={Link} to='/projects/new' button>
 									<ListItemIcon>
 										<Icon>add_circle</Icon>
 									</ListItemIcon>
-									{loc === '/projects/add' ? (
+									{loc === '/projects/new' ? (
 										<ListItemText disableTypography primary='Add Project' className={classes.selected} />
 									) : (
 										<ListItemText primary='Add Project' />

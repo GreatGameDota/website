@@ -14,7 +14,7 @@ class AddProjectForm extends Component {
 				project['lang'] = result.language;
 				project['desc'] = result.description;
 				project['homepage'] = result.homepage;
-				project['path'] = `/projects/${project.name.toLowerCase().replace(/\s+/g, '-')}`;
+				project['path'] = project.name.toLowerCase().replace(/\s+/g, '-');
 				fetch(`http://api.github.com/repos/GreatGameDota/${project.repo}/topics`, {
 					headers: { Accept: 'application/vnd.github.mercy-preview+json' }
 				})

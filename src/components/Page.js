@@ -17,17 +17,13 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme, createMuiTheme } from '@material-ui/core/styles';
 import Slide from '@material-ui/core/Slide';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
-import primaryColor from '@material-ui/core/colors/blue'; // 50-900
 import { ThemeProvider } from '@material-ui/styles';
-import HomePage from './HomePage';
 import Footer from './Footer';
 import Project from './Project';
 import AddProjectForm from './AddProjectForm';
 import GlobalStyles from '../styles/GlobalStyles';
 
-const drawerWidth = 240,
-	colorPrimary = primaryColor[800],
-	brightPrimary = primaryColor[100];
+const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -35,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	appBar: {
 		width: '100%',
-		backgroundColor: colorPrimary,
+		backgroundColor: (props) => props.colorPrimary,
 		zIndex: theme.zIndex.drawer + 1
 	},
 	menuButton: {
@@ -83,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	progress: {
 		margin: '8px',
-		color: colorPrimary
+		color: (props) => props.colorPrimary
 	}
 }));
 
@@ -100,7 +96,8 @@ function HideOnScroll (props) {
 }
 
 function Page (props) {
-	const { container, title, project, location, add, update, remove } = props;
+	const { container, project, location, add, update, remove, colorPrimary, brightPrimary } = props;
+	const title = project.name;
 	let { db } = props;
 	if (typeof db === 'undefined') db = null;
 	const classes = useStyles();
@@ -186,9 +183,7 @@ function Page (props) {
 						</Hidden>
 					</nav>
 					<main className={classes.content}>
-						{project === 'home' ? (
-							<HomePage colorPrimary={colorPrimary} />
-						) : project === 'form' ? (
+						{project.type === 'form' ? (
 							<AddProjectForm add={add} colorPrimary={colorPrimary} />
 						) : (
 							<Project
