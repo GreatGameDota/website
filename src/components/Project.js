@@ -46,6 +46,7 @@ class Project extends Component {
 
 	deleteProject = () => {
 		this.props.remove(this.props.project, 'projects');
+		this.props.history.push('/');
 	};
 
 	componentDidMount () {

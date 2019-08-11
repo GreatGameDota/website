@@ -96,7 +96,7 @@ function HideOnScroll (props) {
 }
 
 function Page (props) {
-	const { container, project, location, add, update, remove, colorPrimary, brightPrimary } = props;
+	const { container, project, location, history, add, update, remove, colorPrimary, brightPrimary } = props;
 	const title = project.name;
 	let { db } = props;
 	if (typeof db === 'undefined') db = null;
@@ -193,6 +193,7 @@ function Page (props) {
 								update={update}
 								colorPrimary={colorPrimary}
 								brightPrimary={brightPrimary}
+								history={history}
 							/>
 						)}
 					</main>
