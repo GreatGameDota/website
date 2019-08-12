@@ -18,7 +18,11 @@ export default {
 	},
 	delete: {
 		gridArea: 'delete',
-		justifySelf: 'end'
+		justifySelf: 'end',
+		backgroundColor: (props) => props.colorPrimary[500],
+		'&:hover': {
+			backgroundColor: (props) => props.colorPrimary[800]
+		}
 	},
 	deleteText: {
 		fontSize: '17px',
@@ -31,10 +35,10 @@ export default {
 		marginBottom: '150px'
 	},
 	colorPrimary: {
-		backgroundColor: (props) => props.brightPrimary
+		backgroundColor: (props) => props.colorPrimary[100]
 	},
 	barColorPrimary: {
-		backgroundColor: (props) => props.colorPrimary
+		backgroundColor: (props) => props.colorPrimary[500]
 	},
 	langContainer: {
 		gridArea: 'lang'

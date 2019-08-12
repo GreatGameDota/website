@@ -18,30 +18,20 @@ class Project extends Component {
 
 	updateData = (project) => {
 		this.setState({ updating: true });
-		fetch(`http://api.github.com/repos/GreatGameDota/${project.repo}`).then((res) => res.json()).then(
-			(result) => {
-				project['lang'] = result.language;
-				project['desc'] = result.description;
-				project['homepage'] = result.homepage;
-				fetch(`http://api.github.com/repos/GreatGameDota/${project.repo}/topics`, {
-					headers: { Accept: 'application/vnd.github.mercy-preview+json' }
-				})
-					.then((res) => res.json())
-					.then(
-						(result) => {
-							project['topics'] = result.names;
-							this.props.update(project, 'projects');
-							this.setState({ updating: false });
-						},
-						(err) => {
-							console.log(`Error: ${err}`);
-						}
-					);
-			},
-			(err) => {
-				console.log(`Error: ${err}`);
-			}
-		);
+		fetch(`http://api.github.com/repos/GreatGameDota/${project.repo}`).then((res) => res.json()).then((result) => {
+			project['lang'] = result.language;
+			project['desc'] = result.description;
+			project['homepage'] = result.homepage;
+			fetch(`http://api.github.com/repos/GreatGameDota/${project.repo}/topics`, {
+				headers: { Accept: 'application/vnd.github.mercy-preview+json' }
+			})
+				.then((res) => res.json())
+				.then((result) => {
+					project['topics'] = result.names;
+					this.props.update(project, 'projects');
+					this.setState({ updating: false });
+				});
+		});
 	};
 
 	deleteProject = () => {

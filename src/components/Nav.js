@@ -46,14 +46,14 @@ const styles = (theme) => ({
 		paddingLeft: theme.spacing(4)
 	},
 	progress: {
-		color: (props) => props.colorPrimary,
+		color: (props) => props.colorPrimary[500],
 		marginTop: '8px',
 		display: 'block',
 		marginLeft: 'auto',
 		marginRight: 'auto'
 	},
 	selected: {
-		color: (props) => props.colorPrimary,
+		color: (props) => props.colorPrimary[500],
 		fontWeight: '500',
 		fontSize: '1rem',
 		fontFamily: 'Roboto',

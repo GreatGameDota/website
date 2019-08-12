@@ -7,9 +7,6 @@ import Loading from './components/Loading';
 import Error from './components/404';
 import primaryColor from '@material-ui/core/colors/blue'; // 50-900
 
-const colorPrimary = primaryColor[800],
-	brightPrimary = primaryColor[100];
-
 export default class Routes extends Component {
 	history = createBrowserHistory(this.props);
 
@@ -29,15 +26,14 @@ export default class Routes extends Component {
 							add={addData}
 							update={updateData}
 							remove={removeData}
-							colorPrimary={colorPrimary}
-							brightPrimary={brightPrimary}
+							colorPrimary={primaryColor}
 						/>
 					);
 				} else {
 					return <Error />;
 				}
 			} else {
-				return <Loading colorPrimary={colorPrimary} brightPrimary={brightPrimary} />;
+				return <Loading colorPrimary={primaryColor} />;
 			}
 		};
 
@@ -53,7 +49,7 @@ export default class Routes extends Component {
 		return (
 			<Router history={this.history}>
 				<Switch>
-					<Route exact path='/' render={(routeProps) => <HomePage {...routeProps} colorPrimary={colorPrimary} />} />
+					<Route exact path='/' render={(routeProps) => <HomePage {...routeProps} colorPrimary={primaryColor} />} />
 					<Route
 						exact
 						path='/projects/new'
@@ -63,7 +59,7 @@ export default class Routes extends Component {
 								db={db}
 								add={addData}
 								project={{ type: 'form', name: 'Add Project Form' }}
-								colorPrimary={colorPrimary}
+								colorPrimary={primaryColor}
 							/>
 						)}
 					/>

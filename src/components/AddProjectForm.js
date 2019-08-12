@@ -14,7 +14,7 @@ class AddProjectForm extends Component {
 				if (res.ok) {
 					return res.json();
 				} else {
-					this.setState({ error: `${res.statusText} - Invalid Repo Name` });
+					this.setState({ error: ` ${res.statusText} - Invalid Repo Name` });
 					throw Error(res.statusText);
 				}
 			})
@@ -85,7 +85,7 @@ class AddProjectForm extends Component {
 							<Field type='text' name='repo' id='repo' placeholder='Repo Name' />
 							<span className={classes.error}>
 								<ErrorMessage name='repo' />
-								<span className={classes.error}> {this.state.error}</span>
+								{this.state.error}
 							</span>
 							<br />
 							<button type='submit' disabled={isSubmitting}>

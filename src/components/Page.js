@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	appBar: {
 		width: '100%',
-		backgroundColor: (props) => props.colorPrimary,
+		backgroundColor: (props) => props.colorPrimary[500],
 		zIndex: theme.zIndex.drawer + 1
 	},
 	menuButton: {
@@ -79,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	progress: {
 		margin: '8px',
-		color: (props) => props.colorPrimary
+		color: (props) => props.colorPrimary[500]
 	}
 }));
 
@@ -96,11 +96,11 @@ function HideOnScroll (props) {
 }
 
 function Page (props) {
-	const { container, project, location, history, add, update, remove, colorPrimary, brightPrimary } = props;
+	const { container, project, location, history, add, update, remove, colorPrimary } = props;
 	const title = project.name;
 	let { db } = props;
 	if (typeof db === 'undefined') db = null;
-	const classes = useStyles();
+	const classes = useStyles(props);
 	const theme = useTheme();
 	const [ mobileOpen, setMobileOpen ] = React.useState(false);
 	function handleDrawerToggle () {
@@ -192,7 +192,6 @@ function Page (props) {
 								remove={remove}
 								update={update}
 								colorPrimary={colorPrimary}
-								brightPrimary={brightPrimary}
 								history={history}
 							/>
 						)}

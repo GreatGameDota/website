@@ -1,8 +1,8 @@
 export default {
 	colorPrimary: {
-		backgroundColor: (props) => props.brightPrimary
+		backgroundColor: (props) => props.colorPrimary[100]
 	},
 	barColorPrimary: {
-		backgroundColor: (props) => props.colorPrimary
+		backgroundColor: (props) => props.colorPrimary[500]
 	}
 };
