@@ -33,6 +33,9 @@ class AddProjectForm extends Component {
 					.then((res) => res.json())
 					.then((result) => {
 						project['topics'] = result.names;
+						if (project.topics.length === 0) {
+							project.topics.push('No tags');
+						}
 						this.props.add(project, 'projects');
 					});
 			})
