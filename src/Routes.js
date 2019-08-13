@@ -49,7 +49,7 @@ export default class Routes extends Component {
 		return (
 			<Router history={this.history}>
 				<Switch>
-					<Route exact path='/' render={(routeProps) => <HomePage {...routeProps} colorPrimary={primaryColor} />} />
+					<Route exact path='/' render={(routeProps) => <HomePage {...routeProps} db={db} colorPrimary={primaryColor} />} />
 					<Route
 						exact
 						path='/projects/new'

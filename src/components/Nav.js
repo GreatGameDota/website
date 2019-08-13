@@ -18,13 +18,18 @@ function ListItemLink (props) {
 			<ListItemText disableTypography primary={name} className={classes.selected} />
 			{open != null ? open ? <ExpandLess /> : <ExpandMore /> : null}
 		</ListItem>
+	) : to === loc ? (
+		<ListItem button component={Link} to={to} {...other}>
+			<ListItemText disableTypography primary={name} className={classes.selected} />
+			{open != null ? open ? <ExpandLess /> : <ExpandMore /> : null}
+		</ListItem>
 	) : (
 		<ListItem button component={Link} to={to} {...other}>
 			<ListItemText primary={name} />
 			{open != null ? open ? <ExpandLess /> : <ExpandMore /> : null}
 		</ListItem>
 	) : (
-		<ListItem button to={to} {...other}>
+		<ListItem button {...other}>
 			<ListItemText primary={name} />
 			{open != null ? open ? <ExpandLess /> : <ExpandMore /> : null}
 		</ListItem>
@@ -106,7 +111,7 @@ class Nav extends Component {
 									{db !== null ? (
 										db.projects.map((project) => (
 											<ListItemLink
-												to={project.path}
+												to={`/projects/${project.path}`}
 												className={classes.nested}
 												name={project.name}
 												button={true}
