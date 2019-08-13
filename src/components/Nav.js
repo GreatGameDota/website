@@ -13,12 +13,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 function ListItemLink (props) {
 	const { classes, to, open, name, button, loc, ...other } = props;
-	const listItem = button ? loc === `/projects/${to}` ? (
-		<ListItem button component={Link} to={to} {...other}>
-			<ListItemText disableTypography primary={name} className={classes.selected} />
-			{open != null ? open ? <ExpandLess /> : <ExpandMore /> : null}
-		</ListItem>
-	) : to === loc ? (
+	const listItem = button ? to === loc ? (
 		<ListItem button component={Link} to={to} {...other}>
 			<ListItemText disableTypography primary={name} className={classes.selected} />
 			{open != null ? open ? <ExpandLess /> : <ExpandMore /> : null}
