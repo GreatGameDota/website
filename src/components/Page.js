@@ -22,6 +22,7 @@ import Footer from './Footer';
 import Project from './Project';
 import AddProjectForm from './AddProjectForm';
 import GlobalStyles from '../styles/GlobalStyles';
+import Overview from './Overview';
 
 const drawerWidth = 240;
 
@@ -185,6 +186,8 @@ function Page (props) {
 					<main className={classes.content}>
 						{project.type === 'form' ? (
 							<AddProjectForm add={add} colorPrimary={colorPrimary} />
+						) : project.type === 'all' ? (
+							<Overview />
 						) : (
 							<Project
 								project={project}

@@ -79,7 +79,7 @@ const styles = makeStyles((theme) => ({
 		color: (props) => props.colorPrimary[500],
 		border: '1px solid',
 		borderColor: (props) => props.colorPrimary[200],
-		fontSize: '2rem',
+		fontSize: '1.5rem',
 		margin: '16px',
 		'&:hover': {
 			borderColor: (props) => props.colorPrimary[800],
@@ -109,7 +109,7 @@ function HomePage (props) {
 		setMobileOpen(false);
 	}
 	function handleClick () {
-		history.push('/projects/new');
+		history.push('/projects');
 	}
 	const drawer = (
 		<div>

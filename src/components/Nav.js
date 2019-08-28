@@ -79,7 +79,19 @@ class Nav extends Component {
 				<nav className={classes.lists} aria-label='nav buttons'>
 					<List>
 						<div onClick={closeDrawer}>
-							<ListItemLink to='/' name='Home' button={true} loc={loc} classes={classes} />
+							{/* <ListItemLink to='/' name='Home' button={true} loc={loc} classes={classes} /> */}
+							<List>
+								<ListItem component={Link} to='/' button>
+									<ListItemIcon>
+										<Icon>home</Icon>
+									</ListItemIcon>
+									{loc === '/' ? (
+										<ListItemText disableTypography primary='Home' className={classes.selected} />
+									) : (
+										<ListItemText primary='Home' />
+									)}
+								</ListItem>
+							</List>
 							<List>
 								<ListItem component={Link} to='/projects/new' button>
 									<ListItemIcon>
@@ -89,6 +101,18 @@ class Nav extends Component {
 										<ListItemText disableTypography primary='Add Project' className={classes.selected} />
 									) : (
 										<ListItemText primary='Add Project' />
+									)}
+								</ListItem>
+							</List>
+							<List>
+								<ListItem component={Link} to='/projects' button>
+									<ListItemIcon>
+										<Icon>list</Icon>
+									</ListItemIcon>
+									{loc === '/projects' ? (
+										<ListItemText disableTypography primary='All Projects' className={classes.selected} />
+									) : (
+										<ListItemText primary='All Projects' />
 									)}
 								</ListItem>
 							</List>

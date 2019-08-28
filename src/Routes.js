@@ -63,6 +63,18 @@ export default class Routes extends Component {
 							/>
 						)}
 					/>
+					<Route
+						exact
+						path='/projects'
+						render={(routeProps) => (
+							<Page
+								{...routeProps}
+								db={db}
+								project={{ type: 'all', name: 'All Projects' }}
+								colorPrimary={primaryColor}
+							/>
+						)}
+					/>
 					<Route exact path='/projects/:id' render={getProject} />
 					<Redirect to='/' />
 				</Switch>
