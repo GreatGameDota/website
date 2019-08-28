@@ -9,7 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
-// import Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
@@ -23,7 +23,7 @@ const drawerWidth = 240;
 
 const styles = makeStyles((theme) => ({
 	root: {
-		display: 'flex'
+		// display: 'flex'
 	},
 	appBar: {
 		width: '100%',
@@ -65,7 +65,26 @@ const styles = makeStyles((theme) => ({
 	content: {
 		padding: '0 8px',
 		width: '100%',
+		height: '100vh',
 		paddingTop: '72px'
+	},
+	jumbotron: {
+		fontSize: '5rem',
+		display: 'block',
+		color: '#000000',
+		textAlign: 'center',
+		paddingTop: '25vh'
+	},
+	button: {
+		color: (props) => props.colorPrimary[500],
+		border: '1px solid',
+		borderColor: (props) => props.colorPrimary[200],
+		fontSize: '2rem',
+		margin: '16px',
+		'&:hover': {
+			borderColor: (props) => props.colorPrimary[800],
+			backgroundColor: (props) => props.colorPrimary[50]
+		}
 	},
 	progress: {
 		margin: '8px',
@@ -76,7 +95,7 @@ const styles = makeStyles((theme) => ({
 const GlobalTheme = createMuiTheme(GlobalStyles);
 
 function HomePage (props) {
-	const { container, location, colorPrimary } = props;
+	const { container, location, history, colorPrimary } = props;
 	const title = 'Home Page';
 	let { db } = props;
 	if (typeof db === 'undefined') db = null;
@@ -88,6 +107,9 @@ function HomePage (props) {
 	}
 	function handleDrawerClose () {
 		setMobileOpen(false);
+	}
+	function handleClick () {
+		history.push('/projects/new');
 	}
 	const drawer = (
 		<div>
@@ -148,6 +170,15 @@ function HomePage (props) {
 						</Drawer>
 					</Hidden>
 				</nav>
+				<main className={classes.content}>
+					<div className={classes.jumbotron}>
+						Welcome!
+						<br />
+						<Button variant='outlined' color='primary' size='large' className={classes.button} onClick={handleClick}>
+							Get started
+						</Button>
+					</div>
+				</main>
 			</div>
 		</ThemeProvider>
 	);
