@@ -19,7 +19,11 @@ class Project extends Component {
 	updateData = (project) => {
 		this.setState({ updating: true });
 		fetch(`http://api.github.com/repos/GreatGameDota/${project.repo}`).then((res) => res.json()).then((result) => {
-			project['lang'] = result.language;
+			if (result.language === 'C++') {
+				project['lang'] = 'Cpp';
+			} else {
+				project['lang'] = result.language;
+			}
 			project['desc'] = result.description;
 			project['homepage'] = result.homepage;
 			fetch(`http://api.github.com/repos/GreatGameDota/${project.repo}/topics`, {
@@ -39,7 +43,7 @@ class Project extends Component {
 
 	deleteProject = () => {
 		this.props.remove(this.props.project, 'projects');
-		this.props.history.push('/');
+		this.props.history.push('/projects');
 	};
 
 	componentDidMount () {
@@ -69,7 +73,11 @@ class Project extends Component {
 						</Tooltip>
 						<div className={classes.langContainer}>
 							<Icon>code</Icon>
-							<div className={classes.lang}>{project.lang}</div>
+							{project.lang === 'Cpp' ? (
+								<div className={classes.lang}>C++</div>
+							) : (
+								<div className={classes.lang}>{project.lang}</div>
+							)}
 						</div>
 						<div className={classes.desc}>{project.desc}</div>
 					</div>

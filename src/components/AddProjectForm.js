@@ -23,7 +23,11 @@ class AddProjectForm extends Component {
 					project.name = result.name;
 				}
 				project['link'] = result.html_url;
-				project['lang'] = result.language;
+				if (result.language === 'C++') {
+					project['lang'] = 'Cpp';
+				} else {
+					project['lang'] = result.language;
+				}
 				project['desc'] = result.description;
 				project['homepage'] = result.homepage;
 				project['path'] = project.name.toLowerCase().replace(/\s+/g, '-');

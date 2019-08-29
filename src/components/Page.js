@@ -187,7 +187,7 @@ function Page (props) {
 						{project.type === 'form' ? (
 							<AddProjectForm add={add} colorPrimary={colorPrimary} />
 						) : project.type === 'all' ? (
-							<Overview />
+							<Overview db={db} colorPrimary={colorPrimary} />
 						) : (
 							<Project
 								project={project}
