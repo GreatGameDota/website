@@ -10,6 +10,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Zoom from '@material-ui/core/Zoom';
 import Chip from '@material-ui/core/Chip';
 import Icon from '@material-ui/core/Icon';
+import GitHubButton from 'react-github-btn';
 
 class Project extends Component {
 	state = {
@@ -58,13 +59,24 @@ class Project extends Component {
 				<div>
 					<div className={classes.root}>
 						<div className={classes.title}>{project.name}</div>
-						<a href={project.link} target='_blank' rel='noopener noreferrer' className={classes.button}>
-							<Tooltip title='Github Source' placement='left' TransitionComponent={Zoom}>
-								<IconButton className={classes.button} aria-label='github'>
-									<img src={GithubIcon} alt='github' width='45px' height='45px' />
-								</IconButton>
-							</Tooltip>
-						</a>
+						<div className={classes.button}>
+							<a href={project.link} target='_blank' rel='noopener noreferrer' className={classes.button}>
+								<Tooltip title='Github Source' placement='left' TransitionComponent={Zoom}>
+									<IconButton className={classes.button} aria-label='github'>
+										<img src={GithubIcon} alt='github' width='45px' height='45px' />
+									</IconButton>
+								</Tooltip>
+							</a>
+							<GitHubButton
+								href={`https://github.com/GreatGameDota/${project.repo}`}
+								data-size='large'
+								data-show-count='true'
+								aria-label='Star project on GitHub'
+								data-icon='octicon-star'
+							>
+								Star
+							</GitHubButton>
+						</div>
 						<Tooltip title='Delete This Project' placement='left' TransitionComponent={Zoom}>
 							<Button onClick={this.deleteProject} variant='contained' color='secondary' className={classes.delete}>
 								<span className={classes.deleteText}>Delete</span>
