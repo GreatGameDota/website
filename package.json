@@ -2,7 +2,7 @@
 	"name": "my-website",
 	"version": "0.1.0",
 	"private": true,
-	"homepage": "http://greatgamedota.github.io",
+	"homepage": "http://greatgamedota.github.io/website",
 	"dependencies": {
 		"@material-ui/core": "^4.3.0",
 		"@material-ui/icons": "^4.2.1",
