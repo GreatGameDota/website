@@ -9,7 +9,7 @@ class AddProjectForm extends Component {
 	};
 
 	addProject = (project) => {
-		fetch(`http://api.github.com/repos/GreatGameDota/${project.repo}`)
+		fetch(`https://api.github.com/repos/GreatGameDota/${project.repo}`)
 			.then((res) => {
 				if (res.ok) {
 					return res.json();
@@ -31,7 +31,7 @@ class AddProjectForm extends Component {
 				project['desc'] = result.description;
 				project['homepage'] = result.homepage;
 				project['path'] = project.name.toLowerCase().replace(/\s+/g, '-');
-				fetch(`http://api.github.com/repos/GreatGameDota/${project.repo}/topics`, {
+				fetch(`https://api.github.com/repos/GreatGameDota/${project.repo}/topics`, {
 					headers: { Accept: 'application/vnd.github.mercy-preview+json' }
 				})
 					.then((res) => res.json())

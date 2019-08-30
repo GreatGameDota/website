@@ -19,7 +19,7 @@ class Project extends Component {
 
 	updateData = (project) => {
 		this.setState({ updating: true });
-		fetch(`http://api.github.com/repos/GreatGameDota/${project.repo}`).then((res) => res.json()).then((result) => {
+		fetch(`https://api.github.com/repos/GreatGameDota/${project.repo}`).then((res) => res.json()).then((result) => {
 			if (result.language === 'C++') {
 				project['lang'] = 'Cpp';
 			} else {
@@ -27,7 +27,7 @@ class Project extends Component {
 			}
 			project['desc'] = result.description;
 			project['homepage'] = result.homepage;
-			fetch(`http://api.github.com/repos/GreatGameDota/${project.repo}/topics`, {
+			fetch(`https://api.github.com/repos/GreatGameDota/${project.repo}/topics`, {
 				headers: { Accept: 'application/vnd.github.mercy-preview+json' }
 			})
 				.then((res) => res.json())
