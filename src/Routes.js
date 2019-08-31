@@ -15,7 +15,7 @@ export default class Routes extends Component {
 
 		const getProject = (props) => {
 			let path = props.match.params.id;
-			if (db.projects.length > 0) {
+			if (db && db.projects.length > 0) {
 				let project = db.projects.find((project) => project.path === path);
 				if (project) {
 					return (
@@ -49,7 +49,11 @@ export default class Routes extends Component {
 		return (
 			<Router history={this.history}>
 				<Switch>
-					<Route exact path='/' render={(routeProps) => <HomePage {...routeProps} db={db} colorPrimary={primaryColor} />} />
+					<Route
+						exact
+						path='/'
+						render={(routeProps) => <HomePage {...routeProps} db={db} colorPrimary={primaryColor} />}
+					/>
 					<Route
 						exact
 						path='/projects/new'

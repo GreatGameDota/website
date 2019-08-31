@@ -23,6 +23,7 @@ import Project from './Project';
 import AddProjectForm from './AddProjectForm';
 import GlobalStyles from '../styles/GlobalStyles';
 import Overview from './Overview';
+import Paper from '@material-ui/core/Paper';
 
 const drawerWidth = 240;
 
@@ -69,14 +70,19 @@ const useStyles = makeStyles((theme) => ({
 		textOverflow: 'ellipsis'
 	},
 	content: {
-		padding: '0 8px',
 		width: '100%',
-		paddingTop: '72px'
+		paddingTop: '64px'
 	},
 	footer: {
 		[theme.breakpoints.up('sm')]: {
 			marginLeft: drawerWidth
 		}
+	},
+	paper: {
+		width: '100%',
+		height: '100%',
+		backgroundColor: '#fafafa',
+		padding: '8px'
 	},
 	progress: {
 		margin: '8px',
@@ -183,22 +189,24 @@ function Page (props) {
 							</Drawer>
 						</Hidden>
 					</nav>
-					<main className={classes.content}>
-						{project.type === 'form' ? (
-							<AddProjectForm add={add} colorPrimary={colorPrimary} />
-						) : project.type === 'all' ? (
-							<Overview db={db} colorPrimary={colorPrimary} />
-						) : (
-							<Project
-								project={project}
-								add={add}
-								remove={remove}
-								update={update}
-								colorPrimary={colorPrimary}
-								history={history}
-							/>
-						)}
-					</main>
+					<Paper square elevation={2} className={classes.paper}>
+						<main className={classes.content}>
+							{project.type === 'form' ? (
+								<AddProjectForm add={add} colorPrimary={colorPrimary} />
+							) : project.type === 'all' ? (
+								<Overview db={db} colorPrimary={colorPrimary} />
+							) : (
+								<Project
+									project={project}
+									add={add}
+									remove={remove}
+									update={update}
+									colorPrimary={colorPrimary}
+									history={history}
+								/>
+							)}
+						</main>
+					</Paper>
 				</div>
 				<div className={classes.footer}>
 					<Footer colorPrimary={colorPrimary} />

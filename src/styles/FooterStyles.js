@@ -2,7 +2,7 @@ export default {
 	root: {
 		color: '#ffffff',
 		height: '50vh',
-		marginTop: '75vh',
+		padding: '8px',
 		backgroundColor: (props) => props.colorPrimary[500]
 	}
 };

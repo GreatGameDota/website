@@ -29,7 +29,7 @@ class Overview extends Component {
 			Cpp: '#f34b7d',
 			Python: '#3572A5'
 		};
-		if (db.projects.length !== 0) {
+		if (db && db.projects.length !== 0) {
 			return (
 				<div className={classes.root}>
 					<div className={classes.jumbotron}>Overview of all my projects</div>
