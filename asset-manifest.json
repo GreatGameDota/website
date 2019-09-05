@@ -1,14 +1,16 @@
 {
   "files": {
-    "main.js": "/website/static/js/main.0b40d863.chunk.js",
-    "main.js.map": "/website/static/js/main.0b40d863.chunk.js.map",
+    "main.js": "/website/static/js/main.89bf60ac.chunk.js",
+    "main.js.map": "/website/static/js/main.89bf60ac.chunk.js.map",
     "runtime~main.js": "/website/static/js/runtime~main.de462641.js",
     "runtime~main.js.map": "/website/static/js/runtime~main.de462641.js.map",
-    "static/js/2.60666c0c.chunk.js": "/website/static/js/2.60666c0c.chunk.js",
-    "static/js/2.60666c0c.chunk.js.map": "/website/static/js/2.60666c0c.chunk.js.map",
+    "static/js/2.9a314aba.chunk.js": "/website/static/js/2.9a314aba.chunk.js",
+    "static/js/2.9a314aba.chunk.js.map": "/website/static/js/2.9a314aba.chunk.js.map",
     "index.html": "/website/index.html",
-    "precache-manifest.6ded960de02b0aed762e39fc90036c58.js": "/website/precache-manifest.6ded960de02b0aed762e39fc90036c58.js",
+    "precache-manifest.2626a35f8810ffb53cf48d199a7f5eb3.js": "/website/precache-manifest.2626a35f8810ffb53cf48d199a7f5eb3.js",
     "service-worker.js": "/website/service-worker.js",
-    "static/media/github.svg": "/website/static/media/github.617870e4.svg"
+    "static/media/github.svg": "/website/static/media/github.617870e4.svg",
+    "static/media/scratch.svg": "/website/static/media/scratch.70961c40.svg",
+    "static/media/youtube.svg": "/website/static/media/youtube.d57a47e1.svg"
   }
 }
