@@ -6,11 +6,6 @@ import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -125,17 +120,6 @@ function Page (props) {
 			<div className={classes.toolbar} />
 			<Divider />
 			<Nav closeDrawer={handleDrawerClose} db={db} colorPrimary={colorPrimary} loc={location.pathname} />
-			<Divider />
-			<List>
-				{[ 'Temp button' ].map((text, index) => (
-					<ListItem button key={text}>
-						<ListItemIcon>
-							<MailIcon />
-						</ListItemIcon>
-						<ListItemText primary={text} />
-					</ListItem>
-				))}
-			</List>
 		</div>
 	);
 

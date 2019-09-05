@@ -20,7 +20,6 @@ export default {
 		fontSize: '2rem',
 		display: 'block',
 		color: '#000000',
-		textAlign: 'center',
-		paddingTop: '10vh'
+		textAlign: 'center'
 	}
 };

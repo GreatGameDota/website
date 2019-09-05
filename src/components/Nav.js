@@ -10,6 +10,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import { Link } from 'react-router-dom';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Divider from '@material-ui/core/Divider';
 
 function ListItemLink (props) {
 	const { classes, to, open, name, button, loc, ...other } = props;
@@ -79,7 +80,6 @@ class Nav extends Component {
 				<nav className={classes.lists} aria-label='nav buttons'>
 					<List>
 						<div onClick={closeDrawer}>
-							{/* <ListItemLink to='/' name='Home' button={true} loc={loc} classes={classes} /> */}
 							<List>
 								<ListItem component={Link} to='/' button>
 									<ListItemIcon>
@@ -145,6 +145,27 @@ class Nav extends Component {
 								</div>
 							</List>
 						</Collapse>
+					</List>
+					<Divider />
+					<List>
+						{[ 'About', 'Contact', 'Support' ].map((text, index) => (
+							<ListItem component={Link} to={`/${text.toLowerCase()}`} button>
+								<ListItemIcon>
+									{index === 0 ? (
+										<Icon>info</Icon>
+									) : index === 1 ? (
+										<Icon>contact_support</Icon>
+									) : (
+										<Icon>attach_money</Icon>
+									)}
+								</ListItemIcon>
+								{loc === `/${text.toLowerCase()}` ? (
+									<ListItemText disableTypography primary={text} className={classes.selected} />
+								) : (
+									<ListItemText primary={text} />
+								)}
+							</ListItem>
+						))}
 					</List>
 				</nav>
 			</div>
