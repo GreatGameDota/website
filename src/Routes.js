@@ -69,6 +69,45 @@ export default class Routes extends Component {
 					/>
 					<Route
 						exact
+						path='/about'
+						render={(routeProps) => (
+							<Page
+								{...routeProps}
+								db={db}
+								add={addData}
+								project={{ type: 'about', name: 'About' }}
+								colorPrimary={primaryColor}
+							/>
+						)}
+					/>
+					<Route
+						exact
+						path='/contact'
+						render={(routeProps) => (
+							<Page
+								{...routeProps}
+								db={db}
+								add={addData}
+								project={{ type: 'contact', name: 'Contact' }}
+								colorPrimary={primaryColor}
+							/>
+						)}
+					/>
+					<Route
+						exact
+						path='/support'
+						render={(routeProps) => (
+							<Page
+								{...routeProps}
+								db={db}
+								add={addData}
+								project={{ type: 'support', name: 'Support' }}
+								colorPrimary={primaryColor}
+							/>
+						)}
+					/>
+					<Route
+						exact
 						path='/projects'
 						render={(routeProps) => (
 							<Page

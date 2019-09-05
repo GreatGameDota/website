@@ -21,6 +21,9 @@ import { ThemeProvider } from '@material-ui/styles';
 import Footer from './Footer';
 import Project from './Project';
 import AddProjectForm from './AddProjectForm';
+import About from './About';
+import Contact from './Contact';
+import Support from './Support';
 import GlobalStyles from '../styles/GlobalStyles';
 import Overview from './Overview';
 import Paper from '@material-ui/core/Paper';
@@ -195,6 +198,12 @@ function Page (props) {
 								<AddProjectForm add={add} colorPrimary={colorPrimary} />
 							) : project.type === 'all' ? (
 								<Overview db={db} colorPrimary={colorPrimary} />
+							) : project.type === 'about' ? (
+								<About />
+							) : project.type === 'contact' ? (
+								<Contact />
+							) : project.type === 'support' ? (
+								<Support />
 							) : (
 								<Project
 									project={project}
