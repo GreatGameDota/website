@@ -78,7 +78,7 @@ class Project extends Component {
 							</GitHubButton>
 						</div>
 						<Tooltip title='Delete This Project' placement='left' TransitionComponent={Zoom}>
-							<Button onClick={this.deleteProject} variant='contained' color='secondary' className={classes.delete}>
+							<Button variant='contained' color='secondary' className={classes.delete}>
 								<span className={classes.deleteText}>Delete</span>
 								<DeleteIcon className={classes.rightIcon} />
 							</Button>
