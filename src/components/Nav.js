@@ -149,7 +149,7 @@ class Nav extends Component {
 					<Divider />
 					<List>
 						{[ 'About', 'Contact', 'Support' ].map((text, index) => (
-							<ListItem component={Link} to={`/${text.toLowerCase()}`} button>
+							<ListItem key={index} component={Link} to={`/${text.toLowerCase()}`} button>
 								<ListItemIcon>
 									{index === 0 ? (
 										<Icon>info</Icon>

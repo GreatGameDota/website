@@ -5,6 +5,7 @@ import Link from '@material-ui/core/Link';
 import GithubIcon from '../resources/github.svg';
 import ScratchIcon from '../resources/scratch.svg';
 import YoutubeIcon from '../resources/youtube.svg';
+import KaggleIcon from '../resources/kaggle.svg';
 import IconButton from '@material-ui/core/IconButton';
 import { Link as RouterLink } from 'react-router-dom';
 
@@ -46,6 +47,16 @@ class Footer extends Component {
 				>
 					<IconButton className={classes.button} aria-label='youtube'>
 						<img src={YoutubeIcon} alt='youtube' width='30px' height='30px' />
+					</IconButton>
+				</a>
+				<a
+					href='https://www.kaggle.com/greatgamedota'
+					target='_blank'
+					rel='noopener noreferrer'
+					className={classes.button}
+				>
+					<IconButton className={classes.button} aria-label='kaggle'>
+						<img src={KaggleIcon} alt='kaggle' width='30px' height='30px' />
 					</IconButton>
 				</a>
 				<br />
