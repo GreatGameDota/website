@@ -20,14 +20,16 @@ class Overview extends Component {
 			Java: 'Java',
 			HTML: 'HTML',
 			Cpp: 'C++',
-			Python: 'Py'
+			Python: 'Py',
+			JupyterNotebook: 'ipynb'
 		};
 		const colors = {
 			JavaScript: '#f1e05a',
 			Java: '#b07219',
 			HTML: '#e34c26',
 			Cpp: '#f34b7d',
-			Python: '#3572A5'
+			Python: '#3572A5',
+			JupyterNotebook: '#DA5B0B'
 		};
 		if (db && db.projects.length !== 0) {
 			return (

@@ -22,6 +22,8 @@ class Project extends Component {
 		fetch(`https://api.github.com/repos/GreatGameDota/${project.repo}`).then((res) => res.json()).then((result) => {
 			if (result.language === 'C++') {
 				project['lang'] = 'Cpp';
+			} else if (result.language === 'Jupyter Notebook') {
+				project['lang'] = 'JupyterNotebook';
 			} else {
 				project['lang'] = result.language;
 			}
@@ -87,6 +89,8 @@ class Project extends Component {
 							<Icon>code</Icon>
 							{project.lang === 'Cpp' ? (
 								<div className={classes.lang}>C++</div>
+							) : project.lang === 'JupyterNotebook' ? (
+								<div className={classes.lang}>Jupyter Notebook</div>
 							) : (
 								<div className={classes.lang}>{project.lang}</div>
 							)}
