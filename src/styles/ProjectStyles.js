@@ -54,5 +54,10 @@ export default {
 	desc: {
 		gridArea: 'desc',
 		justifySelf: 'center'
+	},
+	readme: {
+		margin: '16px',
+		overflow: 'hidden',
+		width: '100%'
 	}
 };

@@ -11,6 +11,7 @@ import Zoom from '@material-ui/core/Zoom';
 import Chip from '@material-ui/core/Chip';
 import Icon from '@material-ui/core/Icon';
 import GitHubButton from 'react-github-btn';
+import ReactMarkdown from 'react-markdown';
 
 class Project extends Component {
 	state = {
@@ -38,8 +39,13 @@ class Project extends Component {
 					if (project.topics.length === 0) {
 						project.topics.push('No tags');
 					}
-					this.props.update(project, 'projects');
-					this.setState({ updating: false });
+					fetch(`https://raw.githubusercontent.com/GreatGameDota/${project.repo}/master/README.md`)
+						.then((response) => response.text())
+						.then((text) => {
+							project['readme'] = text;
+							this.props.update(project, 'projects');
+							this.setState({ updating: false });
+						});
 				});
 		});
 	};
@@ -99,6 +105,9 @@ class Project extends Component {
 					</div>
 					<div>{project.topics.map((topic, index) => <Chip label={topic} className={classes.chip} key={index} />)}</div>
 					<br />
+					<div>
+						<ReactMarkdown source={project.readme} allowDangerousHtml />
+					</div>
 				</div>
 			);
 		} else {

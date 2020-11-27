@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
-import Firebase from 'firebase';
 import config from './dbConfig';
+import Firebase from 'firebase';
+Firebase.initializeApp(config);
 
 export default class Database extends Component {
 	state = config.reset;
-
-	constructor (props) {
-		super(props);
-		Firebase.initializeApp(config);
-	}
 
 	componentDidMount () {
 		this.getData();
