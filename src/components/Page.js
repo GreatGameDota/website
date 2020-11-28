@@ -22,6 +22,7 @@ import Support from './Support';
 import GlobalStyles from '../styles/GlobalStyles';
 import Overview from './Overview';
 import Paper from '@material-ui/core/Paper';
+import { Helmet } from 'react-helmet';
 
 const drawerWidth = 240;
 
@@ -125,6 +126,9 @@ function Page (props) {
 
 	return (
 		<ThemeProvider theme={GlobalTheme}>
+			<Helmet>
+				<title>{title}</title>
+			</Helmet>
 			<div>
 				<div className={classes.root}>
 					<CssBaseline />

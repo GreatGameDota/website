@@ -13,6 +13,7 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import Nav from './Nav';
 import GlobalStyles from '../styles/GlobalStyles';
+import { Helmet } from 'react-helmet';
 
 const drawerWidth = 240;
 
@@ -117,6 +118,9 @@ function HomePage (props) {
 
 	return (
 		<ThemeProvider theme={GlobalTheme}>
+			<Helmet>
+				<title>{title}</title>
+			</Helmet>
 			<div className={classes.root}>
 				<CssBaseline />
 				<AppBar position='fixed' className={classes.appBar}>
