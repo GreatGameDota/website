@@ -60,7 +60,7 @@ class Footer extends Component {
 					</IconButton>
 				</a>
 				<br />
-				<div className={classes.rights}>© 2019 - 2020 GreatGameDota</div>
+				<div className={classes.rights}>© 2019 - 2021 GreatGameDota</div>
 			</div>
 		);
 	}

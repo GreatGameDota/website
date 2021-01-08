@@ -106,7 +106,11 @@ class Project extends Component {
 					<div>{project.topics.map((topic, index) => <Chip label={topic} className={classes.chip} key={index} />)}</div>
 					<br />
 					<div>
-						<ReactMarkdown source={project.readme} allowDangerousHtml />
+						{project.readme !== '404: Not Found' ? (
+							<ReactMarkdown source={project.readme} allowDangerousHtml />
+						) : (
+							<p>No README</p>
+						)}
 					</div>
 				</div>
 			);
