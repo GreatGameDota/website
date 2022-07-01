@@ -14,14 +14,12 @@ class AddProjectForm extends Component {
 				if (res.ok) {
 					return res.json();
 				} else {
-					this.setState({ error: ` ${res.statusText} - Invalid Repo Name` });
+					this.setState({ error: ` ${res.statusText} Invalid Project Name` });
 					throw Error(res.statusText);
 				}
 			})
 			.then((result) => {
-				if (project.name === '') {
-					project.name = result.name;
-				}
+				project.name = result.name;
 				project['link'] = result.html_url;
 				if (result.language === 'C++') {
 					project['lang'] = 'Cpp';
@@ -43,7 +41,7 @@ class AddProjectForm extends Component {
 						this.props.add(project, 'projects');
 					});
 			})
-			.catch((e) => console.error(`${e} - Invalid Repo Name`));
+			.catch((e) => console.error(`${e} - Invalid Project Name`));
 		return new Promise((res, rej) => {
 			setTimeout(function () {
 				res();
@@ -52,8 +50,8 @@ class AddProjectForm extends Component {
 	};
 
 	render () {
-		const { classes } = this.props;
-		const initialValues = { name: '', repo: '' };
+		const { classes, db } = this.props;
+		const initialValues = { repo: '' };
 		return (
 			<div className={classes.root}>
 				<Formik
@@ -61,11 +59,11 @@ class AddProjectForm extends Component {
 					validate={(values) => {
 						this.setState({ error: '' });
 						let errors = {};
-						if (values.name.replace(/ /g, '').length > 20) {
-							errors.name = " Name can't be longer than 20 characters";
-						}
 						if (!values.repo) {
 							errors.repo = ' Required';
+						}
+						if (db.projects.some(e => e.repo === values.repo)) {
+							errors.repo = ' Project Already Added';
 						}
 						return errors;
 					}}
@@ -82,12 +80,6 @@ class AddProjectForm extends Component {
 				>
 					{({ isSubmitting }) => (
 						<Form>
-							<label htmlFor='name'>Project Name </label>
-							<Field type='text' name='name' id='name' placeholder='Name' />
-							<span className={classes.error}>
-								<ErrorMessage name='name' />
-							</span>
-							<br />
 							<label htmlFor='repo'>Github Repo Name </label>
 							<Field type='text' name='repo' id='repo' placeholder='Repo Name' />
 							<span className={classes.error}>

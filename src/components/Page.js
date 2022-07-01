@@ -183,7 +183,7 @@ function Page (props) {
 					<Paper square elevation={2} className={classes.paper}>
 						<main className={classes.content}>
 							{project.type === 'form' ? (
-								<AddProjectForm add={add} colorPrimary={colorPrimary} />
+								<AddProjectForm db={db} add={add} colorPrimary={colorPrimary} />
 							) : project.type === 'all' ? (
 								<Overview db={db} colorPrimary={colorPrimary} />
 							) : project.type === 'about' ? (
