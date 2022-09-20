@@ -12,6 +12,11 @@ import Chip from '@material-ui/core/Chip';
 import Icon from '@material-ui/core/Icon';
 import GitHubButton from 'react-github-btn';
 import ReactMarkdown from 'react-markdown';
+import rehypeRaw from "rehype-raw";
+
+function Image (props) {
+	return <img {...props} style={{ maxWidth: '100%' }} />;
+}
 
 class Project extends Component {
 	state = {
@@ -103,11 +108,21 @@ class Project extends Component {
 						</div>
 						<div className={classes.desc}>{project.desc}</div>
 					</div>
-					<div>{project.topics.map((topic, index) => <Chip label={topic} className={classes.chip} key={index} />)}</div>
+					<div>
+						{project.topics.map((topic, index) => (
+							<Chip label={topic} className={classes.chip} key={index} />
+						))}
+					</div>
 					<br />
 					<div>
 						{project.readme !== '404: Not Found' ? (
-							<ReactMarkdown source={project.readme} allowDangerousHtml />
+							<ReactMarkdown
+								children={project.readme}
+								components={{
+									img: ({ node, ...props }) => <img style={{ maxWidth: '100%' }} {...props} />
+								}}
+								rehypePlugins={[rehypeRaw]}
+							/>
 						) : (
 							<p>No README</p>
 						)}
