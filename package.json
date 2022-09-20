@@ -8,7 +8,7 @@
 		"@material-ui/icons": "^4.2.1",
 		"@material-ui/styles": "^4.3.0",
 		"firebase": "^6.3.4",
-		"formik": "^1.5.8",
+		"formik": "^2.2.9",
 		"gh-pages": "^2.1.1",
 		"history": "^4.9.0",
 		"react": "^16.8.6",
